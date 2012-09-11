@@ -1,0 +1,5 @@
+learnFaces/0041_930831_fa.ppm
+learnFaces/0041_930831_fb.ppm
+learnFaces/0041_930831_hl.ppm
+learnFaces/0041_930831_hr.ppm
+learnFaces/0041_930831_pr.ppm
