@@ -7,3 +7,6 @@
 .project
 .settings
 .buildpath
+.classpath
+.idea
+*.iml
