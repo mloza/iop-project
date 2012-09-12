@@ -1,14 +1,13 @@
 package FaceDetecting;
 
-/**
- * User: scroot
- * Date: 11.09.12
- * Time: 19:14
- */
+import com.googlecode.javacv.cpp.opencv_core;
+
+import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
+
 public class Tester {
 
     public static void main(String[] args) {
-        FaceDetector fd = new FaceDetector();
-        fd.learn("learnFile.txt");
+        opencv_core.IplImage originalImage = cvLoadImage("zdjecie-grupowe.jpg", 1);
+        FaceDetector.detect(originalImage);
     }
 }
