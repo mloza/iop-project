@@ -1,47 +1,64 @@
 package FaceDetecting;
 
-import com.googlecode.javacv.cpp.opencv_objdetect;
+import com.googlecode.javacv.cpp.opencv_core.IplImage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
-import static com.googlecode.javacv.cpp.opencv_core.*;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
-import static com.googlecode.javacv.cpp.opencv_imgproc.CV_BGR2GRAY;
-import static com.googlecode.javacv.cpp.opencv_imgproc.cvCvtColor;
-import static com.googlecode.javacv.cpp.opencv_imgproc.intersectConvexConvex;
-import static com.googlecode.javacv.cpp.opencv_objdetect.cvHaarDetectObjects;
-
-
+/**
+ * User: scroot
+ * Date: 11.09.12
+ * Time: 19:13
+ */
 public class FaceDetector {
-    private static final String CASCADE_FILE = "haarcascade_frontalface_alt.xml";
+    IplImage[] trainingFaceImgArr;
+    public void learn(final String fileName) {
+        int i;
 
-    public static List<Integer[]> detect(IplImage originalImage){
+        trainingFaceImgArr = loadFaceImgArray(fileName);
+    }
 
-        List<Integer[]> facesList = new ArrayList<Integer[]>();
+    /**
+     * Odczyt nazw i nazw plików ludzi z pliku tekstowego i ładowanie listy tych obrazków
+     * @param fileName nazwa pliku
+     * @return Tablica obrazów twarzy
+     */
+    private IplImage[] loadFaceImgArray(String fileName) {
+        IplImage faceImgArr;
+        BufferedReader imgListFile;
+        String imgFilename;
+        int iFace = 0, nFaces = 0, i = 0;
 
-        IplImage grayImage = IplImage.create(originalImage.width(), originalImage.height(), IPL_DEPTH_8U, 1);
+        try {
+            // Otwieramy plik wejściowy z listą obrazków
+            imgListFile = new BufferedReader(new FileReader(fileName));
+            String line;
 
-        cvCvtColor(originalImage, grayImage, CV_BGR2GRAY);
+            //liczenie twarzy, wczytuję plik po linijce
+            while(true) {
+                line = imgListFile.readLine();
+                if(line == null || line.isEmpty()) {
+                    break;
+                }
+                nFaces++;
+            }
+            Utilities.log("Wczytałem "+ nFaces+" lini z pliku.");
 
-        CvMemStorage storage = CvMemStorage.create();
-        opencv_objdetect.CvHaarClassifierCascade cascade = new opencv_objdetect.CvHaarClassifierCascade(cvLoad(CASCADE_FILE));
 
-        CvSeq faces = cvHaarDetectObjects(grayImage, cascade, storage, 1.1, 1, 0);
 
-        Integer[] koordynaty = null;
-        for (int i = 0; i < faces.total(); i++) {
-            CvRect r = new CvRect(cvGetSeqElem(faces, i));
-            koordynaty = new Integer[3];
-            koordynaty[0] = r.x();
-            koordynaty[1] = r.y();
-            koordynaty[2] = r.height();
-            koordynaty[3] = r.width();
-            facesList.add(koordynaty);
+        } catch (FileNotFoundException e) {
+            return null;
+        } catch (IOException e) {
+            return null;
         }
-        return facesList;
 
+        return new IplImage[0];  //To change body of created methods use File | Settings | File Templates.
+    }
+
+    public void Update(IplImage image) {
 
     }
+
 }
