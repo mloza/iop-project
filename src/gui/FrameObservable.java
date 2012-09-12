@@ -1,7 +1,9 @@
 package gui;
 
+import com.googlecode.javacv.cpp.opencv_core.IplImage;
+
 interface FrameObserver {
-	void update();
+	void update(IplImage frame);
 }
 
 public interface FrameObservable {
