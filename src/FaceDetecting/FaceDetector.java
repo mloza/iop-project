@@ -1,17 +1,20 @@
 package FaceDetecting;
 
-import com.googlecode.javacv.cpp.opencv_objdetect;
+import static com.googlecode.javacv.cpp.opencv_core.IPL_DEPTH_8U;
+import static com.googlecode.javacv.cpp.opencv_core.cvGetSeqElem;
+import static com.googlecode.javacv.cpp.opencv_core.cvLoad;
+import static com.googlecode.javacv.cpp.opencv_imgproc.CV_BGR2GRAY;
+import static com.googlecode.javacv.cpp.opencv_imgproc.cvCvtColor;
+import static com.googlecode.javacv.cpp.opencv_objdetect.cvHaarDetectObjects;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.googlecode.javacv.cpp.opencv_core.*;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
-import static com.googlecode.javacv.cpp.opencv_imgproc.CV_BGR2GRAY;
-import static com.googlecode.javacv.cpp.opencv_imgproc.cvCvtColor;
-import static com.googlecode.javacv.cpp.opencv_imgproc.intersectConvexConvex;
-import static com.googlecode.javacv.cpp.opencv_objdetect.cvHaarDetectObjects;
+import com.googlecode.javacv.cpp.opencv_core.CvMemStorage;
+import com.googlecode.javacv.cpp.opencv_core.CvRect;
+import com.googlecode.javacv.cpp.opencv_core.CvSeq;
+import com.googlecode.javacv.cpp.opencv_core.IplImage;
+import com.googlecode.javacv.cpp.opencv_objdetect;
 
 
 public class FaceDetector {
@@ -33,7 +36,7 @@ public class FaceDetector {
         Integer[] koordynaty = null;
         for (int i = 0; i < faces.total(); i++) {
             CvRect r = new CvRect(cvGetSeqElem(faces, i));
-            koordynaty = new Integer[3];
+            koordynaty = new Integer[4];
             koordynaty[0] = r.x();
             koordynaty[1] = r.y();
             koordynaty[2] = r.height();
