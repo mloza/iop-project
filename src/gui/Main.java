@@ -1,5 +1,8 @@
 package gui;
 
+import gui.Camera;
+import gui.FrameObserver;
+
 import com.googlecode.javacv.CanvasFrame;
 import com.googlecode.javacv.FrameGrabber.Exception;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
