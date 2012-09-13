@@ -10,3 +10,4 @@ out
 .classpath
 .idea
 *.iml
+.metadata
