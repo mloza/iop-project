@@ -55,12 +55,15 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords, F
         List<Integer[]> coords = FaceDetector.detect(frame);
         this.notifyListeners(frame, coords);
         this.frame = frame;
-        addRectangles();
+        addRectangles(coords);
         this.notifyListeners();
     }
 
-    private void addRectangles() {
-
+    private void addRectangles(List<Integer[]> coords) {
+        for(Integer[] i: coords) {
+            cvRectangle(this.frame, cvPoint(i[0], i[1]),
+                    cvPoint(i[0] + i[2], i[1] + i[3]), CvScalar.YELLOW, 1, CV_AA, 0);
+        }
     }
 
     @Override
