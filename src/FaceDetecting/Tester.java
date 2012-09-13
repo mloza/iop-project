@@ -1,5 +1,7 @@
 package FaceDetecting;
 
+import java.util.Arrays;
+
 import com.googlecode.javacv.cpp.opencv_core;
 import gui.FrameObservable;
 import gui.FrameObserver;
