@@ -33,7 +33,7 @@ public class FaceDetector {
         Integer[] koordynaty = null;
         for (int i = 0; i < faces.total(); i++) {
             CvRect r = new CvRect(cvGetSeqElem(faces, i));
-            koordynaty = new Integer[3];
+            koordynaty = new Integer[4];
             koordynaty[0] = r.x();
             koordynaty[1] = r.y();
             koordynaty[2] = r.height();
