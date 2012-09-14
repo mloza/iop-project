@@ -23,6 +23,7 @@ class FrameCaptureTask implements Runnable {
 }
 
 // Przyjmijmy na razie, że to jest klasa, z której odpalana jest aplikacja. 
+// Dokładam tutaj odpalanie okienka CharacterPersonView do pokazów - Bartek
 public class Main implements FrameObserver{
 	Camera cam;
 	CanvasFrame canvasFrame = new CanvasFrame("Some Title");
@@ -32,6 +33,8 @@ public class Main implements FrameObserver{
 	public static void main(String args[]) throws Exception {
 		Main main = new Main(new Camera(0));
 		main.test();
+		
+		CharacterPersonView.wlacz();
 	}
 	
 	public Main(Camera cam) throws Exception {
