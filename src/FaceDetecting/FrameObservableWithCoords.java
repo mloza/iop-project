@@ -1,12 +1,15 @@
 package FaceDetecting;
 
 /**
- * User: scroot
- * Date: 13.09.12
- * Time: 21:06
+ * Interface used to specify which of observers needs to obtain coordinates
+ * 
+ * @author M.Loza
  */
+
 public interface FrameObservableWithCoords {
-    void addListener(FrameObserverWithCoords observer);
-    void removeListener(FrameObserverWithCoords observer);
-    void notifyListeners();
+	void addListener(FrameObserverWithCoords observer);
+
+	void removeListener(FrameObserverWithCoords observer);
+
+	void notifyListeners();
 }

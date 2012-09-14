@@ -1,14 +1,14 @@
 package FaceDetecting;
 
-import com.googlecode.javacv.cpp.opencv_core.IplImage;
-
 import java.util.List;
 
+import com.googlecode.javacv.cpp.opencv_core.IplImage;
+
 /**
- * User: scroot
- * Date: 13.09.12
- * Time: 21:02
+ * Interface used to notify all listeners which need coordinates of faces
+ * 
+ * @author M.Loza
  */
 public interface FrameObserverWithCoords {
-    void update(IplImage frame, List<Integer[]> coords);
+	void update(IplImage frame, List<Integer[]> coords);
 }
