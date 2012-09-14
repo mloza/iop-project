@@ -5,10 +5,10 @@ import com.googlecode.javacv.FrameGrabber.Exception;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
 
 
-class FrameCaptureTask implements Runnable {
+class FrameCapturingTask implements Runnable {
 	Camera cam;
 	
-	public FrameCaptureTask(Camera cam) {
+	public FrameCapturingTask(Camera cam) {
 		this.cam = cam;
 	}
 	
@@ -23,18 +23,18 @@ class FrameCaptureTask implements Runnable {
 }
 
 // Przyjmijmy na razie, że to jest klasa, z której odpalana jest aplikacja. 
-public class Main implements FrameObserver{
+public class Testing implements FrameObserver{
 	Camera cam;
 	CanvasFrame canvasFrame = new CanvasFrame("Some Title");
 	long currentMilis = 0;
 	long oldMilis = 0;
 	
 	public static void main(String args[]) throws Exception {
-		Main main = new Main(new Camera(0));
+		Testing main = new Testing(new Camera(0));
 		main.test();
 	}
 	
-	public Main(Camera cam) throws Exception {
+	public Testing(Camera cam) throws Exception {
 		this.cam = cam;
 		this.cam.addListener(this);
 		
@@ -42,7 +42,7 @@ public class Main implements FrameObserver{
 	}
 	
 	void test() {
-		FrameCaptureTask fct = new FrameCaptureTask(cam);
+		FrameCapturingTask fct = new FrameCapturingTask(cam);
 		new Thread(fct).start();
 	}
 	

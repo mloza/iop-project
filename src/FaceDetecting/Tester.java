@@ -1,9 +1,12 @@
 package FaceDetecting;
 
+import java.util.Arrays;
+import com.googlecode.javacv.cpp.opencv_core;
+import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
+
 import com.googlecode.javacv.cpp.opencv_core;
 import gui.FrameObservable;
 import gui.FrameObserver;
-
 import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
 import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
 
