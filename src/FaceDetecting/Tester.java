@@ -1,7 +1,5 @@
 package FaceDetecting;
 
-import java.util.Arrays;
-
 import com.googlecode.javacv.cpp.opencv_core;
 import gui.FrameObservable;
 import gui.FrameObserver;
@@ -23,14 +21,14 @@ public class Tester implements FrameObservable, FrameObserver {
 
     Tester() {
         System.out.println("Ładuję obrazek");
-        frame = cvLoadImage("testFaces/fotografia_szkolna_1.jpg", 1);
+        frame = cvLoadImage("testFaces/group_photo_2007.jpg", 1);
     }
 
     @Override
     public void update(opencv_core.IplImage frame) {
         System.out.println("odbieram obrobiony obrazek");
         System.out.println(frame);
-        cvSaveImage("testFaces/zdjecie-grupowe_2.jpg", frame);
+        cvSaveImage("testFaces/group_photo_2007_face.jpg", frame);
     }
 
     @Override
