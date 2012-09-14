@@ -14,12 +14,20 @@ public class PersonDAO {
 		return DriverManager.getConnection(url, "pk", "pk");
 	}
 	
-	public int insertPerson() {
-		return 0;
-		
+	public int insertPerson(String firstname, String lastname, int age, String country) throws SQLException {
+		String sql;
+		sql = "INSERT INTO person VALUES(default,'" + firstname + "','" + lastname + "'," + age + ",'" + country + "');";
+		Connection conn = getConnection();
+		Statement stmt = conn.createStatement();
+		int counter = stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
+		return counter;
 	}
 	
 	public boolean deletePerson() {
+		
+		
 		return false;
 		
 	}
