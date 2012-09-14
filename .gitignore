@@ -11,3 +11,5 @@ out
 .idea
 *.iml
 .metadata
+javacv-bin
+javacv-examples
