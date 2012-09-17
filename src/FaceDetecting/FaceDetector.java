@@ -2,12 +2,16 @@ package FaceDetecting;
 
 import static com.googlecode.javacv.cpp.opencv_core.CV_AA;
 import static com.googlecode.javacv.cpp.opencv_core.IPL_DEPTH_8U;
+import static com.googlecode.javacv.cpp.opencv_core.cvClearMemStorage;
 import static com.googlecode.javacv.cpp.opencv_core.cvGetSeqElem;
 import static com.googlecode.javacv.cpp.opencv_core.cvLoad;
 import static com.googlecode.javacv.cpp.opencv_core.cvPoint;
 import static com.googlecode.javacv.cpp.opencv_core.cvRectangle;
 import static com.googlecode.javacv.cpp.opencv_imgproc.CV_BGR2GRAY;
+import static com.googlecode.javacv.cpp.opencv_imgproc.CV_INTER_AREA;
 import static com.googlecode.javacv.cpp.opencv_imgproc.cvCvtColor;
+import static com.googlecode.javacv.cpp.opencv_imgproc.cvResize;
+import static com.googlecode.javacv.cpp.opencv_objdetect.CV_HAAR_DO_CANNY_PRUNING;
 import static com.googlecode.javacv.cpp.opencv_objdetect.cvHaarDetectObjects;
 import gui.FrameObservable;
 import gui.FrameObserver;
@@ -18,6 +22,7 @@ import java.util.List;
 import FaceDetecting.FrameObservableWithCoords;
 import FaceDetecting.FrameObserverWithCoords;
 
+import com.googlecode.javacpp.Loader;
 import com.googlecode.javacv.cpp.opencv_core.CvMemStorage;
 import com.googlecode.javacv.cpp.opencv_core.CvRect;
 import com.googlecode.javacv.cpp.opencv_core.CvScalar;
@@ -56,7 +61,23 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * xml file with info about face recognition
 	 */
 	private static final String CASCADE_FILE = "haarcascade_frontalface_alt.xml";
-
+	private opencv_objdetect.CvHaarClassifierCascade classifier;
+	private IplImage grayImage;
+	private IplImage smallImage;
+	private CvMemStorage storage;
+	
+	private static final int REDUCTION = 3; 
+	
+	void init(int imageWidth, int imageHeight) {
+		// Preload the opencv_objdetect module to work around a known bug.
+        Loader.load(opencv_objdetect.class);
+        
+		classifier = new opencv_objdetect.CvHaarClassifierCascade(cvLoad(CASCADE_FILE));
+		grayImage = IplImage.create(imageWidth, imageHeight, IPL_DEPTH_8U, 1);
+		smallImage = IplImage.create(imageWidth/REDUCTION, imageHeight/REDUCTION, IPL_DEPTH_8U, 1);
+		storage = CvMemStorage.create();
+	}
+	
 	/**
 	 * Receives frame and uses face recognition algorithms to set coordinates of
 	 * faces
@@ -64,30 +85,25 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * @param originalImage
 	 * @return list of integer arrays, with coordinates and size of faces
 	 */
-	public static List<Integer[]> detect(IplImage originalImage) {
+	public List<Integer[]> detect(IplImage originalImage) {
 
 		List<Integer[]> facesList = new ArrayList<Integer[]>();
-
-		IplImage grayImage = IplImage.create(originalImage.width(),
-				originalImage.height(), IPL_DEPTH_8U, 1);
-
+		
+		cvClearMemStorage(storage);
 		cvCvtColor(originalImage, grayImage, CV_BGR2GRAY);
-
-		CvMemStorage storage = CvMemStorage.create();
-		opencv_objdetect.CvHaarClassifierCascade cascade = new opencv_objdetect.CvHaarClassifierCascade(
-				cvLoad(CASCADE_FILE));
-
-		CvSeq faces = cvHaarDetectObjects(grayImage, cascade, storage, 1.1, 1,
-				0);
+		cvResize(grayImage, smallImage, CV_INTER_AREA);
+		// Search faces on image <SCALE_FACTOR> times smaller ...
+		CvSeq faces = cvHaarDetectObjects(smallImage, classifier, storage, 1.1, 3, CV_HAAR_DO_CANNY_PRUNING);
 
 		Integer[] coordinates = null;
 		for (int i = 0; i < faces.total(); i++) {
 			CvRect r = new CvRect(cvGetSeqElem(faces, i));
 			coordinates = new Integer[4];
-			coordinates[0] = r.x();
-			coordinates[1] = r.y();
-			coordinates[2] = r.height();
-			coordinates[3] = r.width();
+			// ... so coordinates needs multiplying by SCALE_FACTOR
+			coordinates[0] = r.x() * REDUCTION;
+			coordinates[1] = r.y() * REDUCTION;
+			coordinates[2] = r.height() * REDUCTION;
+			coordinates[3] = r.width() * REDUCTION;
 			facesList.add(coordinates);
 		}
 		return facesList;
@@ -98,7 +114,8 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * 
 	 * @param observable
 	 */
-	public FaceDetector(FrameObservable observable) {
+	public FaceDetector(FrameObservable observable, int frameWidth, int frameHeight) {
+		init(frameWidth, frameHeight);
 		observable.addListener(this);
 	}
 
@@ -108,7 +125,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * @see gui.FrameObserver
 	 */
 	public void update(IplImage frame) {
-		List<Integer[]> coords = FaceDetector.detect(frame);
+		List<Integer[]> coords = detect(frame);
 		this.notifyListeners(frame, coords);
 		this.frame = frame;
 		addRectangles(coords);

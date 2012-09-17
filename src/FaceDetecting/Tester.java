@@ -31,7 +31,7 @@ public class Tester implements FrameObservable, FrameObserver {
 	 */
 	public static void main(String[] args) {
 		Tester t = new Tester();
-		FaceDetector f = new FaceDetector(t);
+		FaceDetector f = new FaceDetector(t, 1802, 1202);
 		f.addListener(t);
 		t.notifyListeners();
 	}

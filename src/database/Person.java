@@ -1,16 +1,29 @@
 package database;
 
 public class Person {
-	String firstname;
-	String lastname;
-	int age;
-	String country;
+	private int id;
+	private String firstname;
+	private String lastname;
+	private int age;
+	private String country;
+	
+	public Person() {
+		
+	}
 	
 	public Person(String firstname, String lastname, int age, String country) {
 		setFirstname(firstname);
 		setLastname(lastname);
 		setAge(age);
 		setCountry(country);
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstname() {
