@@ -42,6 +42,8 @@ public class PersonDAO {
 			person.setCountry(rs.getString("country"));
 		}
 		
+		conn.close();
+		
 		return person;
 		
 	}
