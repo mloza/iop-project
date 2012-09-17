@@ -66,13 +66,15 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	private IplImage smallImage;
 	private CvMemStorage storage;
 	
+	private static final int REDUCTION = 3; 
+	
 	void init(int imageWidth, int imageHeight) {
 		// Preload the opencv_objdetect module to work around a known bug.
         Loader.load(opencv_objdetect.class);
         
 		classifier = new opencv_objdetect.CvHaarClassifierCascade(cvLoad(CASCADE_FILE));
 		grayImage = IplImage.create(imageWidth, imageHeight, IPL_DEPTH_8U, 1);
-		smallImage = IplImage.create(imageWidth/4, imageHeight/4, IPL_DEPTH_8U, 1);
+		smallImage = IplImage.create(imageWidth/REDUCTION, imageHeight/REDUCTION, IPL_DEPTH_8U, 1);
 		storage = CvMemStorage.create();
 	}
 	
@@ -90,18 +92,18 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 		cvClearMemStorage(storage);
 		cvCvtColor(originalImage, grayImage, CV_BGR2GRAY);
 		cvResize(grayImage, smallImage, CV_INTER_AREA);
-		// Search faces on image 4 times smaller ...
+		// Search faces on image <SCALE_FACTOR> times smaller ...
 		CvSeq faces = cvHaarDetectObjects(smallImage, classifier, storage, 1.1, 3, CV_HAAR_DO_CANNY_PRUNING);
 
 		Integer[] coordinates = null;
 		for (int i = 0; i < faces.total(); i++) {
 			CvRect r = new CvRect(cvGetSeqElem(faces, i));
 			coordinates = new Integer[4];
-			// ... so coordinates needs multiplying by 4
-			coordinates[0] = r.x() * 4;
-			coordinates[1] = r.y() * 4;
-			coordinates[2] = r.height() * 4;
-			coordinates[3] = r.width() * 4;
+			// ... so coordinates needs multiplying by SCALE_FACTOR
+			coordinates[0] = r.x() * REDUCTION;
+			coordinates[1] = r.y() * REDUCTION;
+			coordinates[2] = r.height() * REDUCTION;
+			coordinates[3] = r.width() * REDUCTION;
 			facesList.add(coordinates);
 		}
 		return facesList;
