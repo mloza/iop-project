@@ -39,6 +39,8 @@ public class Main implements FrameObserverWithCoords {
 		Camera c = new Camera(0);
 		Main main = new Main(c, new FaceDetector(c, c.imageWidth, c.imageHeight));
 		main.test();
+		
+		CharacterPersonView.wlacz();
 	}
 	
 	public Main(Camera cam, FrameObservableWithCoords observable) throws Exception {
