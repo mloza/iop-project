@@ -1,5 +1,12 @@
 package gui;
 
+import java.util.Arrays;
+import java.util.List;
+
+import FaceDetecting.FaceDetector;
+import FaceDetecting.FrameObservableWithCoords;
+import FaceDetecting.FrameObserverWithCoords;
+
 import com.googlecode.javacv.CanvasFrame;
 import com.googlecode.javacv.FrameGrabber.Exception;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
@@ -23,22 +30,28 @@ class FrameCaptureTask implements Runnable {
 }
 
 // Przyjmijmy na razie, że to jest klasa, z której odpalana jest aplikacja. 
-public class Main implements FrameObserver{
+public class Main implements FrameObserver {
+	CanvasFrame canvasFrame = new CanvasFrame("InteligentEye Test CameraView");
 	Camera cam;
-	CanvasFrame canvasFrame = new CanvasFrame("Some Title");
-	long currentMilis = 0;
-	long oldMilis = 0;
+	FrameObservable faceDetector;
 	
 	public static void main(String args[]) throws Exception {
-		Main main = new Main(new Camera(0));
+		Camera c = new Camera(0);
+		Main main = new Main(c, new FaceDetector(c, c.imageWidth, c.imageHeight));
 		main.test();
+		
+		CharacterPersonView.wlacz();
 	}
 	
-	public Main(Camera cam) throws Exception {
+	public Main(Camera cam, FrameObservable observable) throws Exception {
 		this.cam = cam;
-		this.cam.addListener(this);
+		this.faceDetector = observable;
 		
-		canvasFrame.setCanvasSize(400, 400);
+		
+		System.out.println("CanvasFrame width = " + cam.imageWidth + ", height = " + cam.imageHeight);
+		canvasFrame.setCanvasSize(cam.imageWidth, cam.imageHeight);
+		
+		faceDetector.addListener(this);
 	}
 	
 	void test() {
@@ -46,12 +59,14 @@ public class Main implements FrameObserver{
 		new Thread(fct).start();
 	}
 	
+	long old;
+	long curr;
+	
 	@Override
 	public void update(IplImage frame) {
-		oldMilis = currentMilis;
-	    currentMilis = System.currentTimeMillis();
-		System.out.println("Got frame! (it takes " + (currentMilis - oldMilis) + ")");
-		
+		old = curr;
+		curr = System.currentTimeMillis();
 		canvasFrame.showImage(frame);
+		System.out.println("Frame time equals " + (curr - old) + " ms");
 	}
 }

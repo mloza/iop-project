@@ -8,6 +8,9 @@ import com.googlecode.javacv.OpenCVFrameGrabber;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
 
 public class Camera implements FrameObservable {
+	public int imageWidth;
+	public int imageHeight;
+	
 	FrameGrabber grabber;
 	volatile boolean grabberOn;
 	IplImage currentFrame;
@@ -16,6 +19,16 @@ public class Camera implements FrameObservable {
 	
 	public Camera(int cameraIdx) throws Exception {
 		grabber = new OpenCVFrameGrabber(cameraIdx);
+		setupCameraProperties();
+	}
+	
+	private void setupCameraProperties() throws Exception {
+		// To get camera properties we need only one frame, after that we turn off grabbing.
+		grabber.start();
+			IplImage frame = grabber.grab();
+			imageWidth = frame.width();
+			imageHeight = frame.height();
+		grabber.stop();
 	}
 	
 	public void startCapturing() throws Exception {
@@ -23,7 +36,8 @@ public class Camera implements FrameObservable {
 		grabberOn = true;
 		
 		while(grabberOn) {
-			currentFrame = grabber.grab(); // grabber.grab() nie zwraca dwukrotnie tej samej klatki tylko czeka na nową (blokuje się).
+			// grabber.grab() gets the frame and waits for the next one. It's blocking operation.
+			currentFrame = grabber.grab();
 			notifyListeners();
 		}
 	}
