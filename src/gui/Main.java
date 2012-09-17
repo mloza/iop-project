@@ -30,10 +30,10 @@ class FrameCaptureTask implements Runnable {
 }
 
 // Przyjmijmy na razie, że to jest klasa, z której odpalana jest aplikacja. 
-public class Main implements FrameObserverWithCoords {
+public class Main implements FrameObserver {
 	CanvasFrame canvasFrame = new CanvasFrame("InteligentEye Test CameraView");
 	Camera cam;
-	FrameObservableWithCoords faceDetector;
+	FrameObservable faceDetector;
 	
 	public static void main(String args[]) throws Exception {
 		Camera c = new Camera(0);
@@ -43,7 +43,7 @@ public class Main implements FrameObserverWithCoords {
 		CharacterPersonView.wlacz();
 	}
 	
-	public Main(Camera cam, FrameObservableWithCoords observable) throws Exception {
+	public Main(Camera cam, FrameObservable observable) throws Exception {
 		this.cam = cam;
 		this.faceDetector = observable;
 		
@@ -63,14 +63,10 @@ public class Main implements FrameObserverWithCoords {
 	long curr;
 	
 	@Override
-	public void update(IplImage frame, List<Integer[]> coords) {
+	public void update(IplImage frame) {
 		old = curr;
 		curr = System.currentTimeMillis();
 		canvasFrame.showImage(frame);
 		System.out.println("Frame time equals " + (curr - old) + " ms");
-		System.out.print("Faces coordinates: ");
-		for(Integer[] face : coords) {
-			System.out.println(Arrays.toString(face));
-		}
 	}
 }

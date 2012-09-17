@@ -124,9 +124,9 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 */
 	public void update(IplImage frame) {
 		List<Integer[]> coords = detect(frame);
-		addRectangles(coords);
 		this.notifyListeners(frame, coords);
 		this.frame = frame;
+		addRectangles(coords);
 		this.notifyListeners();
 	}
 
