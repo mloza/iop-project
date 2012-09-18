@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Za\IeC {\l }o\IeC {\.z}enia projektu.}{2}
+\contentsline {section}{\numberline {2}Wst\IeC {\k e}p teoretyczny.}{2}
+\contentsline {subsection}{\numberline {2.1}Opis pierwszego algorytmu}{2}
+\contentsline {subsection}{\numberline {2.2}Opis kolejnego algorytmu}{2}
+\contentsline {section}{\numberline {3}Praktyczna realizacja zadania.}{2}
+\contentsline {section}{\numberline {4}Wnioski i uwagi.}{2}
