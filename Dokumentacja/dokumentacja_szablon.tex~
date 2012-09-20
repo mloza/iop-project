@@ -5,12 +5,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage[OT4]{fontenc}
 %grafiki
-\usepackage{graphicx}
+\usepackage[pdftex]{graphics}
 \usepackage{geometry}
 %data
 \usepackage[iso]{isodateo}
 %ustawienia geometri
-\geometry{verbose,a4paper,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\geometry{verbose,a4paper,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
 %kolorowanie
 \usepackage{listings}
 
@@ -29,12 +29,19 @@
 \tableofcontents
 \pagebreak[4]
 
-\input{./zalozenia.tex}
+\section{Założenia projektu.}
+bla bla bla
 
-\input{./wstep.tex}
+\section{Wstęp teoretyczny.}
+bla bla bla
 
-\input{./rozpoznanie.tex}
+\subsection{Opis pierwszego algorytmu}
 
+bla bla bla
+
+\subsection{Opis kolejnego algorytmu}
+
+tytyryrty
 
 \section{Praktyczna realizacja zadania.}
 
@@ -44,9 +51,5 @@ opis
 \section{Wnioski i uwagi.}
 
 wnioski.
-
-
-\listoffigures
-
 
 \end{document}

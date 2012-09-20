@@ -1,6 +1,11 @@
-\contentsline {section}{\numberline {1}Za\IeC {\l }o\IeC {\.z}enia projektu.}{2}
-\contentsline {section}{\numberline {2}Wst\IeC {\k e}p teoretyczny.}{2}
-\contentsline {subsection}{\numberline {2.1}Opis pierwszego algorytmu}{2}
-\contentsline {subsection}{\numberline {2.2}Opis kolejnego algorytmu}{2}
-\contentsline {section}{\numberline {3}Praktyczna realizacja zadania.}{2}
-\contentsline {section}{\numberline {4}Wnioski i uwagi.}{2}
+\contentsline {section}{\numberline {1}Za\IeC {\l }o\IeC {\.z}enia projektu}{2}
+\contentsline {subsection}{\numberline {1.1}Technika wykonania}{2}
+\contentsline {subsection}{\numberline {1.2}Analiza obrazu}{2}
+\contentsline {section}{\numberline {2}Wst\IeC {\k e}p teoretyczny}{2}
+\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk JAVA}{2}
+\contentsline {subsection}{\numberline {2.2}Rozpoznawanie obrazu}{2}
+\contentsline {section}{\numberline {3}Rozpoznanie twarzy}{2}
+\contentsline {subsection}{\numberline {3.1}Wyb\IeC {\'o}r zestawu cech}{3}
+\contentsline {subsection}{\numberline {3.2}Tworzenie klasyfikatora kaskadowego}{3}
+\contentsline {section}{\numberline {4}Praktyczna realizacja zadania.}{4}
+\contentsline {section}{\numberline {5}Wnioski i uwagi.}{4}
