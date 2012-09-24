@@ -45,7 +45,7 @@ public class FaceRecognition {
     CvMat personNumTruthMat;
     IplImage pAvgTrainImg;
     int nPersons;
-    final List<String> personNames = new ArrayList<String>();
+    final List<String> personNames = new ArrayList<>();
     IplImage[] eigenVectArr;
     //CvMat[] eigenValMat;
     CvMat eigenValMat; //to nie moze byc tablica, jesli bedzie wplywac na inne metody to dajcie znac
@@ -124,8 +124,8 @@ public class FaceRecognition {
     // compute average image, eigenvalues, and eigenvectors
     cvCalcEigenObjects(
             nTrainFaces, // nObjects
-            new PointerPointer(trainingFaceImgArr), // input
-            new PointerPointer(eigenVectArr), // output
+            trainingFaceImgArr, // input
+            eigenVectArr, // output
             CV_EIGOBJ_NO_CALLBACK, // ioFlags
             0, // ioBufSize
             null, // userData
@@ -133,7 +133,7 @@ public class FaceRecognition {
             pAvgTrainImg, // avg
             eigenValMat.data_fl()); // eigVals
 
-    //normalizacja czyli odjecie avarage face
+    
     cvNormalize(
             eigenValMat, // src (CvArr)
             eigenValMat, // dst (CvArr)
@@ -144,11 +144,162 @@ public class FaceRecognition {
   }
     void storeTrainingData()
     {
-        
+        CvFileStorage fileStorage;
+    int i;
+
+    // create a file-storage interface
+    fileStorage = cvOpenFileStorage(
+            "data/facedata.xml", // filename
+            null, // memstorage
+            CV_STORAGE_WRITE, // flags
+            null); // encoding
+
+    // Store the person names. Added by Shervin.
+    cvWriteInt(
+            fileStorage, // fs
+            "nPersons", // name
+            nPersons); // value
+
+    for (i = 0; i < nPersons; i++) {
+      String varname = "personName_" + (i + 1);
+      cvWriteString(
+              fileStorage, // fs
+              varname, // name
+              personNames.get(i), // string
+              0); // quote
     }
-    int loadTrainingData(CvMat[] pTrainPersonNumMat)
+
+    // store all the data
+    cvWriteInt(
+            fileStorage, // fs
+            "nEigens", // name
+            nEigens); // value
+
+    cvWriteInt(
+            fileStorage, // fs
+            "nTrainFaces", // name
+            nTrainFaces); // value
+
+    cvWrite(
+            fileStorage, // fs
+            "trainPersonNumMat", // name
+            personNumTruthMat); // value
+
+    cvWrite(
+            fileStorage, // fs
+            "eigenValMat", // name
+            eigenValMat); // value
+
+    cvWrite(
+            fileStorage, // fs
+            "projectedTrainFaceMat", // name
+            projectedTrainFaceMat);
+
+    cvWrite(fileStorage, // fs
+            "avgTrainImg", // name
+            pAvgTrainImg); // value
+
+    for (i = 0; i < nEigens; i++) {
+      String varname = "eigenVect_" + i;
+      cvWrite(
+              fileStorage, // fs
+              varname, // name
+              eigenVectArr[i]); // value
+      }
+    }
+    CvMat loadTrainingData()
     {
-        return 0;
+        CvMat pTrainPersonNumMat = null; // the person numbers during training
+    CvFileStorage fileStorage;
+    int i;
+
+    // create a file-storage interface
+    fileStorage = cvOpenFileStorage(
+            "data/facedata.xml", // filename
+            null, // memstorage
+            CV_STORAGE_READ, // flags
+            null); // encoding
+    
+
+    // Load the person names.
+    personNames.clear();        // Make sure it starts as empty.
+    nPersons = cvReadIntByName(
+            fileStorage, // fs
+            null, // map
+            "nPersons", // name
+            0); // default_value
+
+    // Load each person's name.
+    for (i = 0; i < nPersons; i++) {
+      String sPersonName;
+      String varname = "personName_" + (i + 1);
+      sPersonName = cvReadStringByName(
+              fileStorage, // fs
+              null, // map
+              varname,
+              "");
+      personNames.add(sPersonName);
+    }
+
+    // Load the data
+    nEigens = cvReadIntByName(
+            fileStorage, // fs
+            null, // map
+            "nEigens",
+            0); // default_value
+    nTrainFaces = cvReadIntByName(
+            fileStorage,
+            null, // map
+            "nTrainFaces",
+            0); // default_value
+    Pointer pointer = cvReadByName(
+            fileStorage, // fs
+            null, // map
+            "trainPersonNumMat"); // name
+    pTrainPersonNumMat = new CvMat(pointer);
+
+    pointer = cvReadByName(
+            fileStorage, // fs
+            null, // map
+            "eigenValMat"); // name
+    eigenValMat = new CvMat(pointer);
+
+    pointer = cvReadByName(
+            fileStorage, // fs
+            null, // map
+            "projectedTrainFaceMat"); // name
+    projectedTrainFaceMat = new CvMat(pointer);
+
+    pointer = cvReadByName(
+            fileStorage,
+            null, // map
+            "avgTrainImg");
+    pAvgTrainImg = new IplImage(pointer);
+
+    eigenVectArr = new IplImage[nTrainFaces];
+    for (i = 0; i < nEigens; i++) {
+      String varname = "eigenVect_" + i;
+      pointer = cvReadByName(
+              fileStorage,
+              null, // map
+              varname);
+      eigenVectArr[i] = new IplImage(pointer);
+    }
+
+    // release the file-storage interface
+    cvReleaseFileStorage(fileStorage);
+    final StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("People: ");
+    if (nPersons > 0) {
+      stringBuilder.append("<").append(personNames.get(0)).append(">");
+    }
+    for (i = 1; i < nPersons; i++) {
+      stringBuilder.append(", <").append(personNames.get(i)).append(">");
+    }
+
+    return pTrainPersonNumMat;
+  
+    
     }
     int findNearestNeighbor(float[] projectedTestFace)
     {
