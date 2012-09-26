@@ -40,7 +40,7 @@ public class Main implements FrameObserver {
 		Main main = new Main(c, new FaceDetector(c, c.imageWidth, c.imageHeight));
 		main.test();
 		
-		CharacterPersonView.wlacz();
+		//CharacterPersonView.wlacz();
 	}
 	
 	public Main(Camera cam, FrameObservable observable) throws Exception {
