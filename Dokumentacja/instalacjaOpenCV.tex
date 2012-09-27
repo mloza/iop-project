@@ -1,13 +1,23 @@
-\documentclass[a4paper, twoside]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[polish]{babel}
-\usepackage{hyperref}
-\tilte{Opis instalacji biblioteki openCV w systemie Linux (dystrybucja Ubuntu 12.04 LTS)}
-\begin{document}
-Początkowo musimy pobrać bibliotekę openCV ze strony projektu \\(\href{http://sourceforge.net/projects/opencvlibrary/}{http://sourceforge.net/projects/opencvlibrary/}). Pobieramy jej najnowszą wersję (my pracowaliśmy na wersji 2.4.2.).
-\newline
-Kolejnym krokiem jest zainstalowanie wszystkich bibliotek w naszym systemie, które są niezbędne do działania openCV. Zainstalujemy je przy pomocy apt-get. 
+
+\section{Załączniki}
+\subsection{Instalacja biblioteki OpcenCV w systemie Linux}
 \begin{center}
+\HRule \\[0.4cm]
+\textsc{\Large Opis instalacji biblioteki openCV w systemie Linux\\ (dystrybucja Ubuntu 12.04 LTS)}
+\HRule \\[0.4cm]
+\end{center}
+
+\begin{itemize}
+\item Początkowo musimy pobrać bibliotekę \textbf{openCV} ze strony projektu 
+\[
+(\href{http://sourceforge.net/projects/opencvlibrary/}{http://sourceforge.net/projects/opencvlibrary/})
+\]
+ Pobieramy jej najnowszą wersję (my pracowaliśmy na wersji 2.4.2.).\\
+
+\item Kolejnym krokiem jest zainstalowanie wszystkich bibliotek w naszym systemie, które są niezbędne do działania openCV. Zainstalujemy je przy pomocy polecenia \textbf{apt-get}. \\  
+
+\begin{tabular}{p{15cm}}
+ \textit{
 apt-get install build-essential libjpeg-turbo8-dev libjpeg8-dev libjpeg-dev libgtk2.0-dev libavcodec-dev libavformat-dev libtiff4-dev cmake libpng++-dev libpng3
 libpnglite-dev
 zlib1g-dbg
@@ -22,42 +32,59 @@ libdc1394-22-dev libdc1394-utils libraw1394-dev
 swig swig2.0
  libv4l-dev
 libblas3gf libgfortran3 liblapack3gf python-numpy
-libgstreamer-plugins-base0.10-dev
+libgstreamer-plugins-base0.10-dev}\\
+
+\end{tabular} \\ 
+
+
+
+\item Kolejnym krokiem jest wypakowanie biblioteki openCV. Robimy to przy pomocy polecenia: 
+
+\begin{center}
+\textit{tar -xvf OpenCV-2.4.2.tar.bz2}
 \end{center}
 
-Kolejnym krokiem jest wypakowanie biblioteki openCV. Robimy to przy pomocy polecenia: 
+\item Następnie wchodzimy do folderu z OpenCV
 
- \begin{center}tar -xvf OpenCV-2.4.2.tar.bz2\end{center}
+\begin{center}
+\textit{cd OpenCV-2.4.2/}
+\end{center}
 
-Następnie wchodzimy do folderu z OpenCV
+\item i wykonujemy polecenie:
 
-\begin{center}cd OpenCV-2.4.2/\end{center}
+\begin{center}\textit{cmake -{}D CMAKE\_BUILD\_TYPE=RELEASE -D ENABLE\_SSE=OFF -D ENABLE\_SSE2=OFF -D ENABLE\_SSE3=OFF .} \end{center}
 
-i wykonujemy polecenie:
+\item Następnie:
+\begin{center}\textit{make}\end{center}
+\item Oraz:
+\begin{center}\textit{sudo make install}\end{center} \pagebreak[4]
 
-\begin{center}cmake -{}D CMAKE\_BUILD\_TYPE=RELEASE -D ENABLE\_SSE=OFF -D ENABLE\_SSE2=OFF -D ENABLE\_SSE3=OFF . \end{center}
-Następnie:
-\begin{center}make\end{center}
-Oraz:
-\begin{center}sudo make install\end{center}
+\item Następnie musimy stworzyć w katalogu \textbf{\(/etc/ld.so.conf.d/\)} plik \textbf{opencv.conf}, w którym dokonamy wpisu:
 
-Następnie musimy stworzyć w katalogu /etc/ld.so.conf.d/ plik opencv.conf, w którym dokonamy wpisu:
+\begin{center}\textit{/usr/local/lib}\end{center}
 
-\begin{center}/usr/local/lib\end{center}
+\item Po tych krokach konfigurujemy naszą bibliotekę poleceniem:
 
-Po tych krokach konfigurujemy naszą bibliotekę poleceniem:
+\begin{center}\textit{sudo ldconfig}\end{center}
 
-\begin{center}sudo ldconfig\end{center}
-
-Dodajemy na końcu pliku /etc/bash.bashrc lub \{katalog\_użytkownika\}/.bashrc wpis:
+\item Dodajemy na końcu pliku \(/etc/bash.bashrc\) lub \(\{katalog\_użytkownika\}/.bashrc\) wpis:
 \begin{center}\mbox{export PKG\_CONFIG\_PATH=\$PKG\_CONFIG\_PATH:/usr/local/lib/pkgconfig} \end{center}
 
 i restartujemy nasz komputer. Biblioteka openCV jest gotowa do użycia w naszym systemie.
 
-Aby jej używać w Javie, musimy jeszcze do naszego projektu dołączyć wrapper JavaCV. Jest on dostępny na stronie \href{http://code.google.com/p/javacv/downloads/list}{http://code.google.com/p/javacv/downloads/list}. Po pobraniu archiwum javacv-0.2-bin.zip rozpakowujemy je. W eclipse, aby dołączyć zewnętrzny plik *.jar (mając otwarty projekt, do którego go dodajemy) wchodzimy kolejno:
-\begin{center} Project \rightarrow Properties \rightarrow Java Build Path \rightarrow Libraries \rightarrow Add External JARs...\end{center}
-\newline
-\newline
-i wybieramy javacv.jar z rozpakowanego archiwum. Nasz projekt powinien się skompilować i uruchomić bez problemów.
+\item Aby jej używać w Javie, musimy jeszcze do naszego projektu dołączyć \textbf{wrapper JavaCV}. Jest on dostępny na stronie
+\[
+ \href{http://code.google.com/p/javacv/downloads/list}{http://code.google.com/p/javacv/downloads/list}.
+\]
+ Po pobraniu archiwum \(javacv-0.2-bin.zip\) rozpakowujemy je. W eclipse, aby dołączyć zewnętrzny plik *.jar (mając otwarty projekt, do którego go dodajemy) wchodzimy kolejno:
+\begin{equation}
+Project \Rightarrow
+ Properties \Rightarrow
+ Java Build Path \Rightarrow
+ Libraries \Rightarrow
+ Add External JARs...
+\end{equation}
 
-\end{document}
+i wybieramy \textbf{javacv.jar} z rozpakowanego archiwum. Nasz projekt powinien się skompilować i uruchomić bez problemów.
+\end{itemize}
+
