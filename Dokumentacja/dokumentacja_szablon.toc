@@ -7,5 +7,10 @@
 \contentsline {section}{\numberline {3}Rozpoznanie twarzy}{2}
 \contentsline {subsection}{\numberline {3.1}Wyb\IeC {\'o}r zestawu cech}{3}
 \contentsline {subsection}{\numberline {3.2}Tworzenie klasyfikatora kaskadowego}{3}
-\contentsline {section}{\numberline {4}Praktyczna realizacja zadania.}{4}
-\contentsline {section}{\numberline {5}Wnioski i uwagi.}{4}
+\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie twarzy}{4}
+\contentsline {subsection}{\numberline {4.1}Kowariancja}{4}
+\contentsline {subsection}{\numberline {4.2}Analiza g\IeC {\l }\IeC {\'o}wnych sk\IeC {\l }adowych (PCA)}{4}
+\contentsline {subsection}{\numberline {4.3}Eigenface}{4}
+\contentsline {subsection}{\numberline {4.4}Algorytm k najbli\IeC {\.z}szych s\IeC {\k a}siad\IeC {\'o}w}{4}
+\contentsline {section}{\numberline {5}Praktyczna realizacja zadania}{5}
+\contentsline {section}{\numberline {6}Wnioski i uwagi}{5}
