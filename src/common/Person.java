@@ -1,11 +1,13 @@
 package common;
 
+import com.googlecode.javacv.cpp.opencv_core.IplImage;
+
 public class Person {
 	private int id;
 	private String firstname;
 	private String lastname;
 	private double matchCoefficient;
-	
+	private IplImage picture;
 	public Person() {
 		
 	}
@@ -46,5 +48,13 @@ public class Person {
 
 	public void setMatchCoefficient(double matchCoefficient) {
 		this.matchCoefficient= matchCoefficient;
+	}
+
+	public IplImage getPicture() {
+		return picture;
+	}
+
+	public void setPicture(IplImage picture) {
+		this.picture = picture;
 	}
 }
