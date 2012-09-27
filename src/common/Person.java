@@ -1,21 +1,19 @@
-package database;
+package common;
 
 public class Person {
 	private int id;
 	private String firstname;
 	private String lastname;
-	private int age;
-	private String country;
+	private double matchCoefficient;
 	
 	public Person() {
 		
 	}
 	
-	public Person(String firstname, String lastname, int age, String country) {
+	public Person(String firstname, String lastname, double matchCoefficient) {
 		setFirstname(firstname);
 		setLastname(lastname);
-		setAge(age);
-		setCountry(country);
+		setMatchCoefficient(matchCoefficient);
 	}
 	
 	public int getId() {
@@ -42,19 +40,11 @@ public class Person {
 		this.lastname = lastname;
 	}
 
-	public int getAge() {
-		return age;
+	public double getMatchCoefficient() {
+		return matchCoefficient;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setMatchCoefficient(double matchCoefficient) {
+		this.matchCoefficient= matchCoefficient;
 	}
 }
