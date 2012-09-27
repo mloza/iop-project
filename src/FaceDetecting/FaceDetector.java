@@ -57,6 +57,9 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * image captured from camera
 	 */
 	private IplImage frame;
+	
+	private int imageWidth;
+	private int imageHeight;
 	/**
 	 * xml file with info about face recognition
 	 */
@@ -115,6 +118,8 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * @param observable
 	 */
 	public FaceDetector(FrameObservable observable, int frameWidth, int frameHeight) {
+		imageWidth = frameWidth;
+		imageHeight = frameHeight;
 		init(frameWidth, frameHeight);
 		observable.addListener(this);
 	}
@@ -210,5 +215,15 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 */
 	public void removeListener(FrameObserver observer) {
 		observers.remove(observer);
+	}
+
+	@Override
+	public int getFrameWidth() {
+		return imageWidth;
+	}
+
+	@Override
+	public int getFrameHeight() {
+		return imageHeight;
 	}
 }
