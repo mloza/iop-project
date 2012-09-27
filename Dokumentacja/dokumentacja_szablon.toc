@@ -15,4 +15,4 @@
 \contentsline {section}{\numberline {5}Praktyczna realizacja zadania}{5}{section.5}
 \contentsline {section}{\numberline {6}Za\IeC {\l }\IeC {\k a}czniki}{6}{section.6}
 \contentsline {subsection}{\numberline {6.1}Instalacja biblioteki OpcenCV w systemie Linux}{6}{subsection.6.1}
-\contentsline {section}{\numberline {7}Wnioski i uwagi}{7}{section.7}
+\contentsline {section}{\numberline {7}Wnioski i uwagi}{8}{section.7}
