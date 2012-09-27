@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.googlecode.javacv.cpp.opencv_core.*;
-import static com.googlecode.javacv.cpp.opencv_highgui.CV_LOAD_IMAGE_GRAYSCALE;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
+import static com.googlecode.javacv.cpp.opencv_highgui.*;
+import static com.googlecode.javacv.cpp.opencv_imgproc.cvResize;
 import static com.googlecode.javacv.cpp.opencv_legacy.*;
 
 public class FaceRecognition implements FrameObserverWithCoords {
@@ -58,7 +58,7 @@ public class FaceRecognition implements FrameObserverWithCoords {
         storeTrainingData();
     }
 
-    static void recognize() {
+    public void recognize(IplImage face) {
         System.out.println("ROZPOZNAWANIE");
 
     }
@@ -498,7 +498,23 @@ public class FaceRecognition implements FrameObserverWithCoords {
 
     @Override
     public void update(IplImage frame, List<Integer[]> coords) {
-        // frame to obrazek cały bez zaznaczonych twarzy, coords to lista tablic czteroelementowych
-        // kolejne liczby oznaczają x, y, długość, szerokość
+        IplImage[] faces = new IplImage[coords.size()];
+        IplImage tmp;
+        int j = 0;
+        for(Integer[] i: coords) {
+            cvSetImageROI(frame, cvRect(i[0], i[1], i[2], i[3]));
+            tmp = cvCreateImage(cvGetSize(frame), frame.depth(), frame.nChannels());
+            cvCopy(frame, tmp, null);
+            faces[j] = tmp;
+            tmp = cvCreateImage(new CvSize(100, 100), frame.depth(), frame.nChannels());
+            cvResize(faces[j], tmp);
+            faces[j] = tmp;
+            cvResetImageROI(frame);
+
+            recognize(faces[j]);
+
+            //cvSaveImage("next"+j+".png", tmp);
+            j++;
+        }
     }
 }
