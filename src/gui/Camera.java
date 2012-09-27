@@ -63,4 +63,14 @@ public class Camera implements FrameObservable {
 			observer.update(currentFrame);
 		}
 	}
+
+	@Override
+	public int getFrameWidth() {
+		return imageWidth;
+	}
+
+	@Override
+	public int getFrameHeight() {
+		return imageHeight;
+	}
 }
