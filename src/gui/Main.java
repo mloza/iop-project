@@ -1,11 +1,7 @@
 package gui;
 
-import java.util.Arrays;
-import java.util.List;
 
 import FaceDetecting.FaceDetector;
-import FaceDetecting.FrameObservableWithCoords;
-import FaceDetecting.FrameObserverWithCoords;
 
 import com.googlecode.javacv.CanvasFrame;
 import com.googlecode.javacv.FrameGrabber.Exception;
@@ -31,7 +27,8 @@ class FrameCaptureTask implements Runnable {
 
 // Przyjmijmy na razie, że to jest klasa, z której odpalana jest aplikacja. 
 public class Main implements FrameObserver {
-	CanvasFrame canvasFrame = new CanvasFrame("InteligentEye Test CameraView");
+	//CanvasFrame canvasFrame = new CanvasFrame("InteligentEye Test CanvasFrame");
+	CameraView cameraView;
 	Camera cam;
 	FrameObservable faceDetector;
 	
@@ -47,9 +44,11 @@ public class Main implements FrameObserver {
 		this.cam = cam;
 		this.faceDetector = observable;
 		
+		cameraView = new CameraView(faceDetector);
+		cameraView.createView();
 		
 		System.out.println("CanvasFrame width = " + cam.imageWidth + ", height = " + cam.imageHeight);
-		canvasFrame.setCanvasSize(cam.imageWidth, cam.imageHeight);
+		//canvasFrame.setCanvasSize(cam.imageWidth, cam.imageHeight);
 		
 		faceDetector.addListener(this);
 	}
@@ -66,7 +65,7 @@ public class Main implements FrameObserver {
 	public void update(IplImage frame) {
 		old = curr;
 		curr = System.currentTimeMillis();
-		canvasFrame.showImage(frame);
+		//canvasFrame.showImage(frame);
 		System.out.println("Frame time equals " + (curr - old) + " ms");
 	}
 }

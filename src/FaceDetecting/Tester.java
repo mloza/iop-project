@@ -75,4 +75,16 @@ public class Tester implements FrameObservable, FrameObserver {
 		System.out.println("powiadamiam słuchaczy");
 		listener.update(frame);
 	}
+
+	@Override
+	public int getFrameWidth() {
+		// WYMAGANE TYLKO GDY OBRAZ WYŚWIETLAMY
+		return 0;
+	}
+
+	@Override
+	public int getFrameHeight() {
+		// WYMAGANE TYLKO GDY OBRAZ WYŚWIETLAMY
+		return 0;
+	}
 }
