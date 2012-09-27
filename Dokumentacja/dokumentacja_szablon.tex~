@@ -13,6 +13,9 @@
 \geometry{verbose,a4paper,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 %kolorowanie
 \usepackage{listings}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{hyperref}
 
 
 \sloppy
@@ -35,15 +38,13 @@
 
 \input{./rozpoznanie.tex}
 
+\input{./porownanie.tex}
 
-\section{Praktyczna realizacja zadania.}
+\input{./wykonanie.tex}
 
-opis
+\input{./instalacjaOpenCV.tex}
 
-
-\section{Wnioski i uwagi.}
-
-wnioski.
+\input{./wnioski.tex}
 
 
 \listoffigures
