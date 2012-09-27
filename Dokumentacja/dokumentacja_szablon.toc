@@ -1,11 +1,18 @@
-\contentsline {section}{\numberline {1}Za\IeC {\l }o\IeC {\.z}enia projektu}{2}
-\contentsline {subsection}{\numberline {1.1}Technika wykonania}{2}
-\contentsline {subsection}{\numberline {1.2}Analiza obrazu}{2}
-\contentsline {section}{\numberline {2}Wst\IeC {\k e}p teoretyczny}{2}
-\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk JAVA}{2}
-\contentsline {subsection}{\numberline {2.2}Rozpoznawanie obrazu}{2}
-\contentsline {section}{\numberline {3}Rozpoznanie twarzy}{2}
-\contentsline {subsection}{\numberline {3.1}Wyb\IeC {\'o}r zestawu cech}{3}
-\contentsline {subsection}{\numberline {3.2}Tworzenie klasyfikatora kaskadowego}{3}
-\contentsline {section}{\numberline {4}Praktyczna realizacja zadania.}{4}
-\contentsline {section}{\numberline {5}Wnioski i uwagi.}{4}
+\contentsline {section}{\numberline {1}Za\IeC {\l }o\IeC {\.z}enia projektu}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Technika wykonania}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Analiza obrazu}{2}{subsection.1.2}
+\contentsline {section}{\numberline {2}Wst\IeC {\k e}p teoretyczny}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}J\IeC {\k e}zyk JAVA}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Rozpoznawanie obrazu}{2}{subsection.2.2}
+\contentsline {section}{\numberline {3}Rozpoznanie twarzy}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Wyb\IeC {\'o}r zestawu cech}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Tworzenie klasyfikatora kaskadowego}{3}{subsection.3.2}
+\contentsline {section}{\numberline {4}Por\IeC {\'o}wnanie twarzy}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Kowariancja}{4}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Analiza g\IeC {\l }\IeC {\'o}wnych sk\IeC {\l }adowych (PCA)}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Eigenface}{4}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Algorytm k najbli\IeC {\.z}szych s\IeC {\k a}siad\IeC {\'o}w}{5}{subsection.4.4}
+\contentsline {section}{\numberline {5}Praktyczna realizacja zadania}{5}{section.5}
+\contentsline {section}{\numberline {6}Za\IeC {\l }\IeC {\k a}czniki}{6}{section.6}
+\contentsline {subsection}{\numberline {6.1}Instalacja biblioteki OpcenCV w systemie Linux}{6}{subsection.6.1}
+\contentsline {section}{\numberline {7}Wnioski i uwagi}{7}{section.7}

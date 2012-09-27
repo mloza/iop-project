@@ -13,3 +13,6 @@ out
 .metadata
 javacv-bin
 javacv-examples
+*.pdf
+*.log
+
