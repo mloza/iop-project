@@ -1,34 +1,18 @@
 package FaceDetecting;
 
-import static com.googlecode.javacv.cpp.opencv_core.CV_AA;
-import static com.googlecode.javacv.cpp.opencv_core.IPL_DEPTH_8U;
-import static com.googlecode.javacv.cpp.opencv_core.cvClearMemStorage;
-import static com.googlecode.javacv.cpp.opencv_core.cvGetSeqElem;
-import static com.googlecode.javacv.cpp.opencv_core.cvLoad;
-import static com.googlecode.javacv.cpp.opencv_core.cvPoint;
-import static com.googlecode.javacv.cpp.opencv_core.cvRectangle;
-import static com.googlecode.javacv.cpp.opencv_imgproc.CV_BGR2GRAY;
-import static com.googlecode.javacv.cpp.opencv_imgproc.CV_INTER_AREA;
-import static com.googlecode.javacv.cpp.opencv_imgproc.cvCvtColor;
-import static com.googlecode.javacv.cpp.opencv_imgproc.cvResize;
-import static com.googlecode.javacv.cpp.opencv_objdetect.CV_HAAR_DO_CANNY_PRUNING;
-import static com.googlecode.javacv.cpp.opencv_objdetect.cvHaarDetectObjects;
+import com.googlecode.javacpp.Loader;
+import com.googlecode.javacv.cpp.opencv_core.*;
+import com.googlecode.javacv.cpp.opencv_objdetect;
 import gui.FrameObservable;
 import gui.FrameObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import FaceDetecting.FrameObservableWithCoords;
-import FaceDetecting.FrameObserverWithCoords;
-
-import com.googlecode.javacpp.Loader;
-import com.googlecode.javacv.cpp.opencv_core.CvMemStorage;
-import com.googlecode.javacv.cpp.opencv_core.CvRect;
-import com.googlecode.javacv.cpp.opencv_core.CvScalar;
-import com.googlecode.javacv.cpp.opencv_core.CvSeq;
-import com.googlecode.javacv.cpp.opencv_core.IplImage;
-import com.googlecode.javacv.cpp.opencv_objdetect;
+import static com.googlecode.javacv.cpp.opencv_core.*;
+import static com.googlecode.javacv.cpp.opencv_imgproc.*;
+import static com.googlecode.javacv.cpp.opencv_objdetect.CV_HAAR_DO_CANNY_PRUNING;
+import static com.googlecode.javacv.cpp.opencv_objdetect.cvHaarDetectObjects;
 
 /**
  * Class implements interfaces FrameObserver, FrameObservableWithCoords,
@@ -37,9 +21,9 @@ import com.googlecode.javacv.cpp.opencv_objdetect;
  * observers, one with coordinates, second without
  * 
  * @author A.Czarnota, M.Gruszka, M.Loza
- * @see FaceDetecting.FrameObesrver
+ * @see gui.FrameObserver
  * @see FaceDetecting.FrameObservableWithCoords
- * @see FaceDetecting.FrameObservable
+ * @see gui.FrameObservable
  */
 
 public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
@@ -57,6 +41,9 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * image captured from camera
 	 */
 	private IplImage frame;
+	
+	private int imageWidth;
+	private int imageHeight;
 	/**
 	 * xml file with info about face recognition
 	 */
@@ -115,6 +102,8 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * @param observable
 	 */
 	public FaceDetector(FrameObservable observable, int frameWidth, int frameHeight) {
+		imageWidth = frameWidth;
+		imageHeight = frameHeight;
 		init(frameWidth, frameHeight);
 		observable.addListener(this);
 	}
@@ -149,7 +138,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * Adds listeners to observersWithCoords list
 	 * 
 	 * @Override method from FrameObservableWithCoords
-	 * @see FaceDetector.FrameObservableWithCoords
+	 * @see FrameObservableWithCoords
 	 */
 	public void addListener(FrameObserverWithCoords observer) {
 		observersWithCoords.add(observer);
@@ -159,7 +148,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * Removes listeners from observersWithCoords list
 	 * 
 	 * @Override method from FrameObservableWithCoords
-	 * @see FaceDetector.FrameObservableWithCoords
+	 * @see FrameObservableWithCoords
 	 */
 	public void removeListener(FrameObserverWithCoords observer) {
 		observersWithCoords.remove(observer);
@@ -169,7 +158,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * Notifies all listeners
 	 * 
 	 * @Override method from FrameObservableWithCoords and FrameObservable
-	 * @see FaceDetector.FrameObservableWithCoords
+	 * @see FrameObservableWithCoords
 	 * @see gui.FrameObservable
 	 */
 	public void notifyListeners() {
@@ -210,5 +199,15 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 */
 	public void removeListener(FrameObserver observer) {
 		observers.remove(observer);
+	}
+
+	@Override
+	public int getFrameWidth() {
+		return imageWidth;
+	}
+
+	@Override
+	public int getFrameHeight() {
+		return imageHeight;
 	}
 }
