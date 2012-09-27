@@ -1,14 +1,21 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.19)  20 SEP 2012 22:16
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.9.18)  27 SEP 2012 19:14
 entering extended mode
- %&-line parsing enabled.
 **dokumentacja_szablon.tex
-(./dokumentacja_szablon.tex
-LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, polish, loaded.
-(/usr/share/texmf-texlive/tex/latex/base/article.cls
+(C:\Users\Scroot\Desktop\iop-project\Dokumentacja\dokumentacja_szablon.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size11.clo
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -23,18 +30,19 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/share/texmf-texlive/tex/latex/polski/polski.sty
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\polski.sty
 Package: polski 2008/02/24 v1.3.3 Polish language package
 
 Document language package `polski' v1.3.3 <2008/02/24>
+\l@nohyphenation=\language70
    Switching to Polish text encoding and Polish maths fonts.
-(/usr/share/texmf-texlive/tex/latex/base/ot4enc.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot4enc.def"
 File: ot4enc.def 2005/09/27 v1.99g Standard LaTeX file
 )
 LaTeX Font Info:    Try loading font information for OT4+cmr on input line 346.
 
 
-(/usr/share/texmf-texlive/tex/latex/polski/ot4cmr.fd
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\ot4cmr.fd
 File: ot4cmr.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
@@ -69,19 +77,19 @@ LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/cmsy/b/n --> OMS/plsy/b/n on input line 346.
 )
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def"
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
 File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -231,7 +239,7 @@ File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
 File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -262,7 +270,7 @@ File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
 File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -288,48 +296,58 @@ Now handling font encoding OT4 ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(/usr/share/texmf-texlive/tex/latex/base/ot4enc.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot4enc.def"
 File: ot4enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding OT4 on input line 43.
 ))
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/etc/texmf/tex/latex/config/graphics.cfg
-File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
 \Gread@gobject=\count87
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
-Package: geometry 2008/12/21 v4.2 Page Geometry
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in pdf mode detected.
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count88
 \Gm@cntv=\count89
@@ -338,21 +356,25 @@ Package ifvtex Info: VTeX not detected.
 \Gm@wd@mp=\dimen106
 \Gm@odd@mp=\dimen107
 \Gm@even@mp=\dimen108
+\Gm@layoutwidth=\dimen109
+\Gm@layoutheight=\dimen110
+\Gm@layouthoffset=\dimen111
+\Gm@layoutvoffset=\dimen112
 \Gm@dimlist=\toks17
 
-(/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
-(/usr/share/texmf-texlive/tex/latex/isodate/isodateo.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\isodate\isodateo.sty
 Package: isodateo 2004/02/12
 
-(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/share/texmf-texlive/tex/latex/tools/calc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count91
 \calc@Bcount=\count92
-\calc@Adimen=\dimen109
-\calc@Bdimen=\dimen110
+\calc@Adimen=\dimen113
+\calc@Bdimen=\dimen114
 \calc@Askip=\skip43
 \calc@Bskip=\skip44
 LaTeX Info: Redefining \setlength on input line 76.
@@ -360,8 +382,8 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count93
 \calc@Cskip=\skip45
 )
-(/usr/share/texmf-texlive/tex/latex/substr/substr.sty
-Package: substr 2005/11/29 v1.1 Handle substrings
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\substr\substr.sty
+Package: substr 2009/10/20 v1.2 Handle substrings
 \c@su@anzahl=\count94
 )
 \c@yeartwo=\count95
@@ -369,55 +391,55 @@ Package: substr 2005/11/29 v1.1 Handle substrings
 \c@iso@minus=\count97
 \c@iso@dot=\count98
 )
-(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
 \lst@mode=\count99
 \lst@gtempboxa=\box26
 \lst@token=\toks18
 \lst@length=\count100
-\lst@currlwidth=\dimen111
+\lst@currlwidth=\dimen115
 \lst@column=\count101
 \lst@pos=\count102
-\lst@lostspace=\dimen112
-\lst@width=\dimen113
+\lst@lostspace=\dimen116
+\lst@width=\dimen117
 \lst@newlines=\count103
 \lst@lineno=\count104
-\lst@maxwidth=\dimen114
+\lst@maxwidth=\dimen118
 
-(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 \c@lstnumber=\count105
 \lst@skipnumbers=\count106
 \lst@framebox=\box27
 )
-(/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
 File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
-(/usr/share/texmf-texlive/tex/latex/mh/mathtools.sty
-Package: mathtools 2008/08/01 v1.06 mathematical typesetting tools (MH)
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\mh\mathtools.sty
+Package: mathtools 2012/04/24 v1.12 mathematical typesetting tools
 
-(/usr/share/texmf-texlive/tex/latex/mh/mhsetup.sty
-Package: mhsetup 2007/12/03 v1.2 programming setup (MH)
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\mh\mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsmath.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip46
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texmf-texlive/tex/latex/amsmath/amstext.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
 Package: amstext 2000/06/29 v2.01
 
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks19
-\ex@=\dimen115
+\ex@=\dimen119
 ))
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen116
+\pmbraise@=\dimen120
 )
-(/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count107
@@ -432,7 +454,7 @@ LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
 \Mathstrutbox@=\box28
 \strutbox@=\box29
-\big@size=\dimen117
+\big@size=\dimen121
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \macc@depth=\count112
@@ -445,12 +467,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \column@=\count117
 \maxfields@=\count118
 \andhelp@=\toks21
-\eqnshift@=\dimen118
-\alignsep@=\dimen119
-\tagshift@=\dimen120
-\tagwidth@=\dimen121
-\totwidth@=\dimen122
-\lineht@=\dimen123
+\eqnshift@=\dimen122
+\alignsep@=\dimen123
+\tagshift@=\dimen124
+\tagwidth@=\dimen125
+\totwidth@=\dimen126
+\lineht@=\dimen127
 \@envbody=\toks22
 \multlinegap=\skip47
 \multlinetaggap=\skip48
@@ -459,11 +481,16 @@ LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
 \g_MT_multlinerow_int=\count119
-\l_MT_multwidth_dim=\dimen124
+\l_MT_multwidth_dim=\dimen128
+\origjot=\skip49
+\l_MT_shortvdotswithinadjustabove_dim=\dimen129
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen130
+\l_MT_above_intertext_dim=\dimen131
+\l_MT_below_intertext_dim=\dimen132
+\l_MT_above_shortintertext_dim=\dimen133
+\l_MT_below_shortintertext_dim=\dimen134
 )
-(./dokumentacja_szablon.aux)
-\openout1 = `dokumentacja_szablon.aux'.
-
+(C:\Users\Scroot\Desktop\iop-project\Dokumentacja\dokumentacja_szablon.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
@@ -479,81 +506,79 @@ LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for OT4/cmr/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count120
-\scratchdimen=\dimen125
+\scratchdimen=\dimen135
 \scratchbox=\box30
 \nofMPsegments=\count121
 \nofMParguments=\count122
 \everyMPshowfont=\toks24
 \MPscratchCnt=\count123
-\MPscratchDim=\dimen126
+\MPscratchDim=\dimen136
 \MPnumerator=\count124
+\makeMPintoPDFobject=\count125
 \everyMPtoPDFconversion=\toks25
 )
-*geometry auto-detecting driver*
-*geometry detected driver: pdftex*
--------------------- Geometry parameters
-paper: a4paper
-landscape: --
-twocolumn: --
-twoside: --
-asymmetric: --
-h-parts: 71.13188pt, 455.24411pt, 71.13188pt
-v-parts: 71.13188pt, 702.78308pt, 71.13188pt
-hmarginratio: --
-vmarginratio: --
-lines: --
-heightrounded: --
-bindingoffset: 0.0pt
-truedimen: --
-includehead: --
-includefoot: --
-includemp: --
-driver: pdftex
--------------------- Page layout dimensions and switches
-\paperwidth  597.50787pt
-\paperheight 845.04684pt
-\textwidth  455.24411pt
-\textheight 702.78308pt
-\oddsidemargin  -1.1381pt
-\evensidemargin -1.1381pt
-\topmargin  -38.1381pt
-\headheight 12.0pt
-\headsep    25.0pt
-\footskip   30.0pt
-\marginparwidth 50.0pt
-\marginparsep   10.0pt
-\columnsep  10.0pt
-\skip\footins  10.0pt plus 4.0pt minus 2.0pt
-\hoffset 0.0pt
-\voffset 0.0pt
-\mag 1000
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(1in=72.27pt, 1cm=28.45pt)
------------------------
-\c@lstlisting=\count125
-(./title.tex <./logo_pk.jpg, id=1, 722.7pt x 722.7pt>
+\c@lstlisting=\count126
+(C:\Users\Scroot\Desktop\iop-project\Dokumentacja\title.tex
+<./logo_pk.jpg, id=1, 722.7pt x 722.7pt>
 File: ./logo_pk.jpg Graphic file (type jpg)
  <use ./logo_pk.jpg>
-[1
+Package pdftex.def Info: ./logo_pk.jpg used on input line 6.
+(pdftex.def)             Requested size: 722.69823pt x 722.69823pt.
+ [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logo_pk.jpg>])
-(./dokumentacja_szablon.toc
+{C:/Users/Scroot/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/S
+croot/Desktop/iop-project/Dokumentacja/logo_pk.jpg>])
+(C:\Users\Scroot\Desktop\iop-project\Dokumentacja\dokumentacja_szablon.toc
 LaTeX Font Info:    Try loading font information for OML+plm on input line 2.
 
-(/usr/share/texmf-texlive/tex/latex/polski/omlplm.fd
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\omlplm.fd
 File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    Try loading font information for OMS+plsy on input line 2.
 
-(/usr/share/texmf-texlive/tex/latex/polski/omsplsy.fd
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\omsplsy.fd
 File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    Try loading font information for OMX+plex on input line 2.
 
-(/usr/share/texmf-texlive/tex/latex/polski/omxplex.fd
+(C:\Users\Scroot\AppData\Roaming\MiKTeX\2.9\tex\latex\polski\omxplex.fd
 File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
 )
 LaTeX Font Info:    External font `plex10' loaded for size
@@ -564,36 +589,41 @@ LaTeX Font Info:    External font `plex10' loaded for size
 (Font)              <6> on input line 2.
 )
 \tf@toc=\write3
-\openout3 = `dokumentacja_szablon.toc'.
 
- [1] (./zalozenia.tex)
-(./wstep.tex) (./rozpoznanie.tex [2]
+[1] (C:\Users\Scroot\Desktop\iop-project\Dokumentacja\zalozenia.tex)
+(C:\Users\Scroot\Desktop\iop-project\Dokumentacja\wstep.tex)
+(C:\Users\Scroot\Desktop\iop-project\Dokumentacja\rozpoznanie.tex [2]
 <./violajones.jpg, id=19, 471.7625pt x 299.1175pt>
 File: ./violajones.jpg Graphic file (type jpg)
- <use ./violajones.jpg>)
-[3 <./violajones.jpg>] (./dokumentacja_szablon.lof)
+ <use ./violajones.jpg>
+Package pdftex.def Info: ./violajones.jpg used on input line 10.
+(pdftex.def)             Requested size: 283.05968pt x 179.47188pt.
+)
+[3 <C:/Users/Scroot/Desktop/iop-project/Dokumentacja/violajones.jpg>]
+(C:\Users\Scroot\Desktop\iop-project\Dokumentacja\dokumentacja_szablon.lof)
 \tf@lof=\write4
-\openout4 = `dokumentacja_szablon.lof'.
 
- [4]
-(./dokumentacja_szablon.aux) ) 
+[4] (C:\Users\Scroot\Desktop\iop-project\Dokumentacja\dokumentacja_szablon.aux)
+ ) 
 Here is how much of TeX's memory you used:
- 4468 strings out of 495026
- 58726 string characters out of 1181802
- 121299 words of memory out of 3000000
- 7569 multiletter control sequences out of 15000+50000
+ 4900 strings out of 494045
+ 67007 string characters out of 3148384
+ 133375 words of memory out of 3000000
+ 8105 multiletter control sequences out of 15000+200000
  12702 words of font info for 35 fonts, out of 3000000 for 9000
- 48 hyphenation exceptions out of 8191
- 33i,6n,32p,1333b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/pl/plrm
-.enc}{/usr/share/texmf-texlive/fonts/enc/dvips/pl/plit.enc}{/usr/share/texmf-te
-xlive/fonts/enc/dvips/pl/plsc.enc}</usr/share/texmf-texlive/fonts/type1/public/
-pl/plbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/pl/plbx12.pfb></usr/
-share/texmf-texlive/fonts/type1/public/pl/plcsc10.pfb></usr/share/texmf-texlive
-/fonts/type1/public/pl/plr10.pfb></usr/share/texmf-texlive/fonts/type1/public/p
-l/plr12.pfb></usr/share/texmf-texlive/fonts/type1/public/pl/plr17.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/pl/plti12.pfb>
-Output written on dokumentacja_szablon.pdf (5 pages, 224150 bytes).
+ 715 hyphenation exceptions out of 8191
+ 33i,6n,32p,1333b,270s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Scroot/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/pl/plrm.enc}{C:/U
+sers/Scroot/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/pl/plit.enc}{C:/Users/Sc
+root/AppData/Roaming/MiKTeX/2.9/fonts/enc/dvips/pl/plsc.enc}<C:/Users/Scroot/Ap
+pData/Roaming/MiKTeX/2.9/fonts/type1/public/pl/plbx10.pfb><C:/Users/Scroot/AppD
+ata/Roaming/MiKTeX/2.9/fonts/type1/public/pl/plbx12.pfb><C:/Users/Scroot/AppDat
+a/Roaming/MiKTeX/2.9/fonts/type1/public/pl/plcsc10.pfb><C:/Users/Scroot/AppData
+/Roaming/MiKTeX/2.9/fonts/type1/public/pl/plr10.pfb><C:/Users/Scroot/AppData/Ro
+aming/MiKTeX/2.9/fonts/type1/public/pl/plr12.pfb><C:/Users/Scroot/AppData/Roami
+ng/MiKTeX/2.9/fonts/type1/public/pl/plr17.pfb><C:/Users/Scroot/AppData/Roaming/
+MiKTeX/2.9/fonts/type1/public/pl/plti12.pfb>
+Output written on dokumentacja_szablon.pdf (5 pages, 224241 bytes).
 PDF statistics:
  51 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
