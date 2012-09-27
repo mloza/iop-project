@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.19)  20 SEP 2012 22:16
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.9.19)  27 SEP 2012 19:01
 entering extended mode
  %&-line parsing enabled.
 **dokumentacja_szablon.tex
@@ -571,31 +571,39 @@ LaTeX Font Info:    External font `plex10' loaded for size
 <./violajones.jpg, id=19, 471.7625pt x 299.1175pt>
 File: ./violajones.jpg Graphic file (type jpg)
  <use ./violajones.jpg>)
-[3 <./violajones.jpg>] (./dokumentacja_szablon.lof)
+(./porownanie.tex [3 <./violajones.jpg>]
+<./eigenface.jpg, id=23, 251.94125pt x 299.1175pt>
+File: ./eigenface.jpg Graphic file (type jpg)
+ <use ./eigenface.jpg>
+Underfull \hbox (badness 10000) in paragraph at lines 23--26
+
+ []
+
+[4 <./eigenface.jpg>]) (./wykonanie.tex) (./wnioski.tex)
+(./dokumentacja_szablon.lof)
 \tf@lof=\write4
 \openout4 = `dokumentacja_szablon.lof'.
 
- [4]
-(./dokumentacja_szablon.aux) ) 
+ [5] (./dokumentacja_szablon.aux) ) 
 Here is how much of TeX's memory you used:
- 4468 strings out of 495026
- 58726 string characters out of 1181802
+ 4482 strings out of 495026
+ 58932 string characters out of 1181802
  121299 words of memory out of 3000000
- 7569 multiletter control sequences out of 15000+50000
+ 7573 multiletter control sequences out of 15000+50000
  12702 words of font info for 35 fonts, out of 3000000 for 9000
  48 hyphenation exceptions out of 8191
  33i,6n,32p,1333b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/pl/plrm
-.enc}{/usr/share/texmf-texlive/fonts/enc/dvips/pl/plit.enc}{/usr/share/texmf-te
-xlive/fonts/enc/dvips/pl/plsc.enc}</usr/share/texmf-texlive/fonts/type1/public/
-pl/plbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/pl/plbx12.pfb></usr/
-share/texmf-texlive/fonts/type1/public/pl/plcsc10.pfb></usr/share/texmf-texlive
-/fonts/type1/public/pl/plr10.pfb></usr/share/texmf-texlive/fonts/type1/public/p
-l/plr12.pfb></usr/share/texmf-texlive/fonts/type1/public/pl/plr17.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/pl/plti12.pfb>
-Output written on dokumentacja_szablon.pdf (5 pages, 224150 bytes).
+{/usr/share/texmf-texlive/fonts/enc/dvips/pl
+/plrm.enc}{/usr/share/texmf-texlive/fonts/enc/dvips/pl/plit.enc}{/usr/share/tex
+mf-texlive/fonts/enc/dvips/pl/plsc.enc}</usr/share/texmf-texlive/fonts/type1/pu
+blic/pl/plbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/pl/plbx12.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/pl/plcsc10.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/pl/plr10.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/pl/plr12.pfb></usr/share/texmf-texlive/fonts/type1/public/pl/plr17.pfb></us
+r/share/texmf-texlive/fonts/type1/public/pl/plti12.pfb>
+Output written on dokumentacja_szablon.pdf (6 pages, 240847 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
+ 55 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
