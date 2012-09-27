@@ -1,11 +1,11 @@
 package FaceDetecting;
 
-import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
+import com.googlecode.javacv.cpp.opencv_core;
 import gui.FrameObservable;
 import gui.FrameObserver;
 
-import com.googlecode.javacv.cpp.opencv_core;
+import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
+import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
 
 /**
  * Testing class, creates listeners and sends sample image. Implements
@@ -36,6 +36,9 @@ public class Tester implements FrameObservable, FrameObserver {
 		t.notifyListeners();
 	}
 
+    /**
+     * Loads image to process
+     */
 	Tester() {
 		System.out.println("Ładuję obrazek");
 		frame = cvLoadImage("testFaces/group_photo_2007.jpg", 1);
