@@ -31,7 +31,7 @@ public class Tester implements FrameObservable, FrameObserver {
      */
     public static void main(String[] args) {
         Tester t = new Tester();
-        FaceDetector f = new FaceDetector(t, 1802, 1202);
+        FaceDetector f = new FaceDetector(t, t.frame.width(), t.frame.height());
         FaceRecognition recognizer = new FaceRecognition(f);
 
         f.addListener(t);
@@ -43,7 +43,10 @@ public class Tester implements FrameObservable, FrameObserver {
      */
     Tester() {
         System.out.println("Ładuję obrazek");
-        frame = cvLoadImage("testFaces/group_photo_2007.jpg", 1);
+        frame = cvLoadImage("data/learn/2.ppm", 1);
+        //opencv_core.IplImage tmp = cvCreateImage(new opencv_core.CvSize(100, 100), frame.depth(), frame.nChannels());
+        //cvResize(frame, tmp);
+        //frame = tmp;
     }
 
     /**

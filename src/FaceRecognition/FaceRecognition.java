@@ -5,7 +5,6 @@ import FaceDetecting.FrameObservableWithCoords;
 import FaceDetecting.FrameObserverWithCoords;
 import com.googlecode.javacpp.FloatPointer;
 import com.googlecode.javacpp.Pointer;
-import com.googlecode.javacpp.PointerPointer;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,8 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.googlecode.javacv.cpp.opencv_core.*;
-import static com.googlecode.javacv.cpp.opencv_highgui.*;
-import static com.googlecode.javacv.cpp.opencv_imgproc.cvResize;
+import static com.googlecode.javacv.cpp.opencv_highgui.CV_LOAD_IMAGE_GRAYSCALE;
+import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
+import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
+import static com.googlecode.javacv.cpp.opencv_imgproc.*;
 import static com.googlecode.javacv.cpp.opencv_legacy.*;
 
 public class FaceRecognition implements FrameObserverWithCoords {
@@ -24,6 +25,7 @@ public class FaceRecognition implements FrameObserverWithCoords {
     IplImage[] trainingFaceImgArr;
     CvMat personNumTruthMat;
     IplImage pAvgTrainImg;
+    IplImage testFaceImg;
     IplImage[] testFaceImgArr;
     int nPersons;
     final List<String> personNames = new ArrayList<String>();
@@ -38,93 +40,83 @@ public class FaceRecognition implements FrameObserverWithCoords {
 
     public FaceRecognition(FrameObservableWithCoords observable) {
         observable.addListener(this);
+        learn();
     }
 
-    void learn() {
+    void learn()
+    {
         final String trainFileName = "train.txt";
         trainingFaceImgArr = loadFaceImgArray(trainFileName);
         nTrainFaces = trainingFaceImgArr.length;
         System.out.println(nTrainFaces);
-        if (nTrainFaces < 2)
+        if(nTrainFaces < 2)
             System.out.println("Za malo twarzy treningowych!");
 
         doPCA();
-        projectedTrainFaceMat = cvCreateMat(nTrainFaces, nEigens, CV_32FC1);
+        projectedTrainFaceMat =  cvCreateMat(nTrainFaces, nEigens, CV_32FC1);
         final FloatPointer floatPointer = new FloatPointer(nEigens);
-        for (int i = 0; i < nTrainFaces; i++) {
-            cvEigenDecomposite(trainingFaceImgArr[i], nEigens, new PointerPointer(eigenVectArr), 0, null, pAvgTrainImg, floatPointer);
+        for(int i=0; i<nTrainFaces; i++)
+        {
+            cvEigenDecomposite(trainingFaceImgArr[i], nEigens, eigenVectArr, 0,null, pAvgTrainImg, floatPointer);
 
         }
         storeTrainingData();
     }
 
+
     public void recognize(IplImage face) {
-        System.out.println("ROZPOZNAWANIE");
-
-    }
-
-    public void recognizeFileList(final String szFileTest) {
-        System.out.println("===========================================");
-        System.out.println("recognizing faces indexed from " + szFileTest);
-        int i = 0;
-        int nTestFaces = 0;         // the number of test images
-        CvMat trainPersonNumMat;  // the person numbers during training
+        CvMat trainPersonNumMat;
         float[] projectedTestFace;
-        String answer;
-        int nCorrect = 0;
-        int nWrong = 0;
         double timeFaceRecognizeStart;
         double tallyFaceRecognizeTime;
         float confidence = 0.0f;
-
-        // load test images and ground truth for person number
-        testFaceImgArr = loadFaceImgArray(szFileTest);
-        nTestFaces = testFaceImgArr.length;
-
-        System.out.println(nTestFaces + " test faces loaded");
-
-        // load the saved training data
+        String answer;
+        int nCorrect = 0;
+        int nWrong = 0;
+        testFaceImg = face;
+        System.out.println("Twarz do badania przyjęta.");
         trainPersonNumMat = loadTrainingData();
-        if (trainPersonNumMat == null) {
+        personNumTruthMat = cvCreateMat(
+                1, //rows
+                1, //cols
+                CV_32SC1 //type 32 bit unsigned 1 ch
+        );
+        if(trainPersonNumMat == null)
+        {
             return;
         }
-
-        // project the test images onto the PCA subspace
+        //PCA
         projectedTestFace = new float[nEigens];
-        timeFaceRecognizeStart = (double) cvGetTickCount();        // Record the timing.
+        timeFaceRecognizeStart = (double) cvGetTickCount();
 
-        for (i = 0; i < nTestFaces; i++) {
-            int iNearest;
-            int nearest;
-            int truth;
+        int iNearest;
+        int nearest;
+        int truth;
 
-            // project the test image onto the PCA subspace
-            cvEigenDecomposite(
-                    testFaceImgArr[i], // obj
-                    nEigens, // nEigObjs
-                    eigenVectArr, // eigInput (Pointer)
-                    0, // ioFlags
-                    null, // userData
-                    pAvgTrainImg, // avg
-                    projectedTestFace);  // coeffs
+        cvEigenDecomposite(testFaceImg,
+                nEigens,
+                eigenVectArr,
+                0,
+                null,
+                pAvgTrainImg,
+                projectedTestFace);
+        final FloatPointer pConfidence = new FloatPointer(confidence);
+        iNearest = findNearestNeighbor(projectedTestFace, new FloatPointer(pConfidence));
+        confidence = pConfidence.get();
+        truth = personNumTruthMat.data_i().get(0);
+        nearest = trainPersonNumMat.data_i().get(iNearest);
 
-            //LOGGER.info("projectedTestFace\n" + floatArrayToString(projectedTestFace));
-
-            final FloatPointer pConfidence = new FloatPointer(confidence);
-            iNearest = findNearestNeighbor(projectedTestFace, new FloatPointer(pConfidence));
-            confidence = pConfidence.get();
-            truth = personNumTruthMat.data_i().get(i);
-            nearest = trainPersonNumMat.data_i().get(iNearest);
-
-            if (nearest == truth) {
-                answer = "Correct";
-                nCorrect++;
-            } else {
-                answer = "WRONG!";
-                nWrong++;
-            }
-            System.out.println("nearest = " + nearest + ", Truth = " + truth + " (" + answer + "). Confidence = " + confidence);
+        if (nearest == truth)
+        {
+            answer = "Correct";
+            nCorrect++;
+        } else
+        {
+            answer = "WRONG!";
+            nWrong++;
         }
+        System.out.println("nearest = " + nearest + ", Truth = " + truth + " (" + answer + "). Confidence = " + confidence);
+
         tallyFaceRecognizeTime = (double) cvGetTickCount() - timeFaceRecognizeStart;
         if (nCorrect + nWrong > 0) {
             System.out.println("TOTAL ACCURACY: " + (nCorrect * 100 / (nCorrect + nWrong)) + "% out of " + (nCorrect + nWrong) + " tests.");
@@ -197,7 +189,8 @@ public class FaceRecognition implements FrameObserverWithCoords {
         System.out.println("PCA done.");
     }
 
-    void storeTrainingData() {
+    void storeTrainingData()
+    {
         CvFileStorage fileStorage;
         int i;
 
@@ -260,9 +253,11 @@ public class FaceRecognition implements FrameObserverWithCoords {
                     varname, // name
                     eigenVectArr[i]); // value
         }
+        cvReleaseFileStorage(fileStorage);
     }
 
-    CvMat loadTrainingData() {
+    CvMat loadTrainingData()
+    {
         CvMat pTrainPersonNumMat = null; // the person numbers during training
         CvFileStorage fileStorage;
         int i;
@@ -329,9 +324,9 @@ public class FaceRecognition implements FrameObserverWithCoords {
                 null, // map
                 "avgTrainImg");
         pAvgTrainImg = new IplImage(pointer);
-
-        eigenVectArr = new IplImage[nTrainFaces];
-        for (i = 0; i < nEigens; i++) {
+        eigenVectArr = new IplImage[nEigens];
+        for (i = 0; i < nEigens; i++)
+        {
             String varname = "eigenVect_" + i;
             pointer = cvReadByName(
                     fileStorage,
@@ -342,19 +337,9 @@ public class FaceRecognition implements FrameObserverWithCoords {
 
         // release the file-storage interface
         cvReleaseFileStorage(fileStorage);
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("People: ");
-        if (nPersons > 0) {
-            stringBuilder.append("<").append(personNames.get(0)).append(">");
-        }
-        for (i = 1; i < nPersons; i++) {
-            stringBuilder.append(", <").append(personNames.get(i)).append(">");
-        }
-
         return pTrainPersonNumMat;
 
     }
-
     private int findNearestNeighbor(float projectedTestFace[], FloatPointer pConfidencePointer) {
         double leastDistSq = Double.MAX_VALUE;
         int i = 0;
@@ -473,31 +458,18 @@ public class FaceRecognition implements FrameObserverWithCoords {
         return faceImgArr;
     }
 
-    static void printUsage() {
-        System.out.println("Usage: eigenface <command>\n"
-                + "Valid commands are:\n"
-                + "train\n"
-                + "test\n");
-    }
-
     public static void main(String[] args) {
         FaceRecognition nowy = new FaceRecognition();
-        if (args.length == 0) {
-
-            printUsage();
-
-        } else if (!args[0].equals("recognize"))
+        if (args.length != 0) {
             nowy.learn();
-        else if (!args[0].equals("learn"))
-            nowy.recognizeFileList("train.txt");
-        else {
-            System.out.println("Komenda nieznana: " + args[0]);
-            printUsage();
         }
+
+
     }
 
     @Override
     public void update(IplImage frame, List<Integer[]> coords) {
+        System.out.println("Przekazuje do rozpoznania");
         IplImage[] faces = new IplImage[coords.size()];
         IplImage tmp;
         int j = 0;
@@ -509,11 +481,12 @@ public class FaceRecognition implements FrameObserverWithCoords {
             tmp = cvCreateImage(new CvSize(100, 100), frame.depth(), frame.nChannels());
             cvResize(faces[j], tmp);
             faces[j] = tmp;
+            tmp = IplImage.create(100, 100, IPL_DEPTH_8U, 1);
+            cvCvtColor(faces[j], tmp, CV_BGR2GRAY);
+            faces[j] = tmp;
             cvResetImageROI(frame);
-
+            cvSaveImage("next"+j+".png", tmp);
             recognize(faces[j]);
-
-            //cvSaveImage("next"+j+".png", tmp);
             j++;
         }
     }

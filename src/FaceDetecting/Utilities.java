@@ -11,3 +11,17 @@ public class Utilities {
 		System.out.println(log);
 	}
 }
+
+class Logger {
+    public static Logger getLogger() {
+        return new Logger();
+    }
+
+    public void info(String asd) {
+        System.out.println(asd);
+    }
+
+    public void error(String asd) {
+        System.out.println(asd);
+    }
+}

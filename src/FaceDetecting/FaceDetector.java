@@ -41,8 +41,16 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	 * image captured from camera
 	 */
 	private IplImage frame;
-	
-	private int imageWidth;
+
+    public void setImageWidth(int imageWidth) {
+        this.imageWidth = imageWidth;
+    }
+
+    public void setImageHeight(int imageHeight) {
+        this.imageHeight = imageHeight;
+    }
+
+    private int imageWidth;
 	private int imageHeight;
 	/**
 	 * xml file with info about face recognition
@@ -58,7 +66,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	void init(int imageWidth, int imageHeight) {
 		// Preload the opencv_objdetect module to work around a known bug.
         Loader.load(opencv_objdetect.class);
-        
+
 		classifier = new opencv_objdetect.CvHaarClassifierCascade(cvLoad(CASCADE_FILE));
 		grayImage = IplImage.create(imageWidth, imageHeight, IPL_DEPTH_8U, 1);
 		smallImage = IplImage.create(imageWidth/REDUCTION, imageHeight/REDUCTION, IPL_DEPTH_8U, 1);
@@ -75,7 +83,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	public List<Integer[]> detect(IplImage originalImage) {
 
 		List<Integer[]> facesList = new ArrayList<Integer[]>();
-		
+
 		cvClearMemStorage(storage);
 		cvCvtColor(originalImage, grayImage, CV_BGR2GRAY);
 		cvResize(grayImage, smallImage, CV_INTER_AREA);
