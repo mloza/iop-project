@@ -11,6 +11,8 @@ import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
 
+import common.Person;
+
 public class CharacterPersonView extends JFrame {
 
 	private JPanel contentPane;
@@ -18,11 +20,11 @@ public class CharacterPersonView extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void wlacz() {
+	public static void createWindow(final Person person) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CharacterPersonView frame = new CharacterPersonView();
+					CharacterPersonView frame = new CharacterPersonView(person);
 					frame.setResizable(false);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -35,7 +37,8 @@ public class CharacterPersonView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CharacterPersonView() {
+	public CharacterPersonView(Person person) {
+		
 		setTitle("IntelligentEye - Character Person View");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 528, 409);
@@ -84,14 +87,12 @@ public class CharacterPersonView extends JFrame {
 		contentPane.add(dane);
 		dane.setLayout(new BoxLayout(dane, BoxLayout.Y_AXIS));
 		
-		JLabel lblImiINazwisko = new JLabel("Imię i nazwisko: Xxxx Yyyyyy");
+		JLabel lblImiINazwisko = new JLabel("Imię i nazwisko: " + person.getFirstname() + " "  + person.getLastname());
 		dane.add(lblImiINazwisko);
 		
-		JLabel lblWiek = new JLabel("Wiek: 36");
+		JLabel lblWiek = new JLabel("Współczynnik podobieństwa: " + person.getMatchCoefficient());
 		dane.add(lblWiek);
 		
-		JLabel lblPochodzenie = new JLabel("Pochodzenie: Zzzz");
-		dane.add(lblPochodzenie);
 	}
 	
 }
