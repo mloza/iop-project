@@ -1,10 +1,2 @@
 InteligentEye application started from "/media/Dane/Moje dane/Studia/IV semestr/InteligentEye/iop-project"
-GOT EXCEPTION: 
-com.googlecode.javacv.FrameGrabber$Exception: cvCreateCameraCapture() Error: Could not create camera capture.
-	at com.googlecode.javacv.OpenCVFrameGrabber.start(OpenCVFrameGrabber.java:172)
-	at gui.Camera.setupCameraProperties(Camera.java:27)
-	at gui.Camera.<init>(Camera.java:22)
-	at gui.Application.createCamera(Application.java:64)
-	at gui.Application.<init>(Application.java:39)
-	at gui.Application.main(Application.java:20)
-
+Access to video device gained.
