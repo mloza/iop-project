@@ -20,14 +20,14 @@ Eigenface, lub twarze własne, to zbiór wektorów własnych używany przy kompu
 Dzięki przechowywaniu twarzy nie jako pliku graficznego, a jako listy pewnych wartości, rozmiar pliku jest niewielki. Stworzone twarze własne będą ukazywać się jako jasne  ciemne obszary układające się w pewien określony zbiór.
 
 \subsection{Algorytm k najbliższych sąsiadów}
-Jest to algorytm uzywany w statystyce do prognozowania wartości pewnej zmiennej losowej, jednak może być również używany do klasyfikacji. Aby polepszyć działanie algorytmu kNN powszechnie stosowaną techniką jest standaryzacja lub normalizacja danych. Standaryzacja polega na doprowadzeniu do sytuacji w której wartość średnia poszczególnej cechy ma wartość 0 a odchylenie standardowe = 1. Normalizacja to  doprowadzenie do sytuacji w której wartości zmiennej należą do przedziału [0,1]
-\newline
-\\Uczenie:
+Jest to algorytm uzywany w statystyce do prognozowania wartości pewnej zmiennej losowej, jednak może być również używany do klasyfikacji. Aby polepszyć działanie algorytmu kNN powszechnie stosowaną techniką jest \textbf{standaryzacja} lub \textbf{normalizacja} danych. Standaryzacja polega na doprowadzeniu do sytuacji w której wartość średnia poszczególnej cechy ma wartość 0 a odchylenie standardowe = 1. Normalizacja to  doprowadzenie do sytuacji w której wartości zmiennej należą do przedziału [0,1]
+\newline \\
+\textbf{Uczenie}:
 \begin{enumerate}
   \item Dokonaj alternatywnie: standaryzacji/normalizacji/pozostaw dane jakie są
   \item Zapamiętaj cały zbiór treningowy
 \end{enumerate}
-Testowanie:
+\textbf{Testowanie}:
 \begin{enumerate}
   \item Dokonaj standaryzacji/normalizacji/pozostaw dane jakie są (testowanie)
   \item Policz odległości pomiędzy wektorem testowym a wszystkimi wektorami zbioru treningowego
@@ -36,3 +36,4 @@ Testowanie:
   \item Przypisz najczęściej występującą etykietę jako etykietę wektora testowego 
   \item Jeśli wystąpił impas (dwie klasy miały taką samą liczbę głosów) rozwiąż problem losowo
 \end{enumerate}
+\pagebreak[4]
