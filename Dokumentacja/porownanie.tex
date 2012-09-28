@@ -18,7 +18,17 @@ Eigenface, lub twarze własne, to zbiór wektorów własnych używany przy kompu
 \end{figure}
 
 Dzięki przechowywaniu twarzy nie jako pliku graficznego, a jako listy pewnych wartości, rozmiar pliku jest niewielki. Stworzone twarze własne będą ukazywać się jako jasne  ciemne obszary układające się w pewien określony zbiór.
+\newpage
+\noindent \textbf{W celu wygenerowania zbioru Eigenface (Twarze własne), należy:}
+\begin{enumerate}
+\item Przygotować zbiór gotowych twarzy, które będą wykorzystane do nauki. Zdjęcia składające się na zbiór do nauki powinny być zrobione w tych samych warunkach świetlnych i powinny być znormalizowane w taki sposób, aby oczy oraz usta były wyrównane względem wszystkich innych zdjęć. Każde zdjęcie jest traktowane jak pojedyńczy wektor, poprzez proste łączenie rzędów pixeli w oryginalnym obrazie, czego wynikiem jest pojedyńczy wiersz. Zakłada się również, że wszystkie dane odnośnie zdjęć ze zbioru znajdują się w jednej macierzy M, gdzie każdy wiersz macierzy jest pojedyńczym zdjęciem.
+\item  Pojedyńcze zdjęcie zwane zdjęciem “średnim”, które powstaje w wyniku nałożenia na siebie wszystkich zdjęć danej osoby musi być przeliczone a następnie odjętę od każdego kolejnego oryginalnego zdjęcia w macierzy M.
+\item  Następnie należy przeliczyć wektory Eigen oraz wartości Eigen macierzy kowariancji. Każdy z wektorów Eigen ma tę samą ilość komponentów jak oryginalny obraz i dlatego sam może być traktowany jak obraz. Dlatego też wektory Eigen macierzy kowariancji są nazywane twarzami Eigen. Są one kierunkami w których obraz różni się od zdjęcia średniego. Zwykle będzie to zasobożerny proces.
+\item Wybierz najważniejsze komponenty. Macierz kowariancji wielkości D x D dostarczy wektory Eigen w ilości D, każdy z nich będzie reprezentował jeden z tych kierunków odchylenia. Wektory Eigen z przypisaną największą wartością Eigen zostają zachowane.
+\end{enumerate}
 
+\noindent Wygenerowane twarze Eigen mogą być teraz użyte do reprezentacji zarówno istniejących ja i nowych twarzy: możemy zaprojektować nowe (tzn. nieodjętę od macierzy) zdjęcia na twarzach Eigen i w ten sposób uzyskać informacje jak nowa twarz różni się od twarzy “średniej”. Wartości Eigen powiązane z każdą twarzą Eigen informują jak bardzo obrazy w zbiorze do nauki rżónią się od średnich. Poprzez trzymanie twarzy Eigen tylo z najwyższymi wartościami omijamy problem nadmiarowości.
+\newpage
 \subsection{Algorytm k najbliższych sąsiadów}
 Jest to algorytm uzywany w statystyce do prognozowania wartości pewnej zmiennej losowej, jednak może być również używany do klasyfikacji. Aby polepszyć działanie algorytmu kNN powszechnie stosowaną techniką jest \textbf{standaryzacja} lub \textbf{normalizacja} danych. Standaryzacja polega na doprowadzeniu do sytuacji w której wartość średnia poszczególnej cechy ma wartość 0 a odchylenie standardowe = 1. Normalizacja to  doprowadzenie do sytuacji w której wartości zmiennej należą do przedziału [0,1]
 \newline \\

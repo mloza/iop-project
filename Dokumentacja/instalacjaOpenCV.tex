@@ -1,6 +1,6 @@
 
 \section{Załączniki}
-\subsection{Instalacja biblioteki OpcenCV w systemie Linux}
+\subsection{Instalacja biblioteki openCV w systemie Linux}
 \begin{center}
 \HRule \\[0.4cm]
 \textsc{\Large Opis instalacji biblioteki openCV w systemie Linux\\ (dystrybucja Ubuntu 12.04 LTS)}
@@ -10,7 +10,7 @@
 \begin{itemize}
 \item Początkowo musimy pobrać bibliotekę \textbf{openCV} ze strony projektu 
 \[
-(\href{http://sourceforge.net/projects/opencvlibrary/}{http://sourceforge.net/projects/opencvlibrary/})
+\underline{(\href{http://sourceforge.net/projects/opencvlibrary/}{http://sourceforge.net/projects/opencvlibrary/})}
 \]
  Pobieramy jej najnowszą wersję (my pracowaliśmy na wersji 2.4.2.).\\
 
@@ -86,5 +86,46 @@ Project \Rightarrow
 \end{equation}
 
 i wybieramy \textbf{javacv.jar} z rozpakowanego archiwum. Nasz projekt powinien się skompilować i uruchomić bez problemów.
+\end{itemize}
+\newpage
+\subsection{Instalacja biblioteki openCV w systemie Windows}
+\begin{center}
+\HRule \\[0.4cm]
+\textsc{\Large Opis instalacji biblioteki openCV w systemie Windows}
+\HRule \\[0.4cm]
+\end{center}
+\begin{itemize}
+\item Popieramy bibliotekę openCV w wersji 2.4.2 
+\[
+\underline{(\href{http://sourceforge.net/projects/opencvlibrary/}{http://sourceforge.net/projects/opencvlibrary/})}.
+\]
+\item Kolejnym krokiem jest pobranie  \textit{Microsoft Visual C++ 2010 Redistributable Package}, \\ \\
+\textbf{wersja 32bitowa}:
+\[
+\underline{(\href{http://www.microsoft.com/download/en/details.aspx?id=5555}{http://www.microsoft.com/download/en/details.aspx?id=5555})}
+\]
+\textbf{wersja 64bitowa}:
+\[
+\underline{(\href{http://www.microsoft.com/download/en/details.aspx?id=14632}{http://www.microsoft.com/download/en/details.aspx?id=14632})}
+\]
+\item Najpierw instalujemy \textit{Microsoft Visual C++ 2010 Redistributable Package}. Następnie rozpakowujemy \textit{OpenCV-2.4.2.exe} do do C:\ i konfigurujemy ścieżki poprzez dodanie odpowiednich zmiennych środowiskowych PPM
+\begin{equation}
+\begin{split}
+ Moj Komputer \Rightarrow Wlasciwości \Rightarrow Ustawienia Zaawansowane \\ \Rightarrow Zaawansowane  \Rightarrow Zmienne srodowiskowe
+\end{split}
+\end{equation}  i po średniku dodajemy: \\
+\\ W przypadku gdy mamy \textbf{64-bitowe JDK:}
+\begin{center}
+C:\textbackslash opencv\textbackslash build \textbackslash common\textbackslash tbb\textbackslash intel64\textbackslash vc10\textbackslash ;C:\textbackslash opencv\textbackslash build\textbackslash x64\textbackslash vc10\textbackslash bin\
+\end{center}
+W przypadku gdy mamy \textbf{32-bitowe JDK:}
+\begin{center}
+C:\textbackslash opencv\textbackslash build\textbackslash common\textbackslash tbb\textbackslash ia32\textbackslash vc10\textbackslash ;C:\textbackslash opencv\textbackslash build\textbackslash x86\textbackslash vc10\textbackslash bin\
+\end{center}
+\item Następnie rozpakowujemy \textit{javacv-**-bin.zip} i dodajemy pliki jar (te które zgadzają się z naszą wersja systemu) do build path projektu eclipse:
+ \begin{equation}
+Project \Rightarrow Properties \Rightarrow  Java Build Path \Rightarrow  Libraries \Rightarrow  Add external JARs...
+\end{equation}
+
 \end{itemize}
 \pagebreak[4]
