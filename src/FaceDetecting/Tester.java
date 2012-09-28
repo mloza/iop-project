@@ -42,7 +42,7 @@ public class Tester implements FrameObservable, FrameObserver {
      */
     Tester() {
         System.out.println("Ładuję obrazek");
-        frame = cvLoadImage("tst1/1.jpg", 1);
+        frame = cvLoadImage("1.jpeg", 1);
         //opencv_core.IplImage tmp = cvCreateImage(new opencv_core.CvSize(100, 100), frame.depth(), frame.nChannels());
         //cvResize(frame, tmp);
         //frame = tmp;

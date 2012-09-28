@@ -1,22 +1,11 @@
 package gui;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import javax.swing.SpringLayout;
-
-import com.googlecode.javacv.cpp.opencv_core.IplImage;
-
 import common.Person;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class CharacterPersonView extends JFrame {
@@ -31,24 +20,35 @@ public class CharacterPersonView extends JFrame {
 	 * Launch the application.
 	 */
 	public static void createWindow(final Person person) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CharacterPersonView frame = new CharacterPersonView(person);
-					frame.setVisible(true);
-					frame.setResizable(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+        if(person.getWindow() == null) {
+            person.setWindow(1);
+            EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        CharacterPersonView frame = new CharacterPersonView(person);
+                        frame.setVisible(true);
+                        frame.setResizable(false);
+                        frame.addWindowListener(new WindowAdapter() {
+                            @Override
+                            public void windowClosing(WindowEvent e) {
+                                person.setWindow(null);
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public CharacterPersonView(Person person) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // person.setWindow(this);
+		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 179);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,8 +68,7 @@ public class CharacterPersonView extends JFrame {
 		panel.setBounds(12, 23, 100, 100);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
-		
-		// obraz do sprawdzenia
+
 		ImageIcon img = new ImageIcon(person.getPicture().getBufferedImage());
 		lblNewLabel_1.setIcon(img);
 		panel.add(lblNewLabel_1);
