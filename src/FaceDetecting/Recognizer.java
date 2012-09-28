@@ -9,16 +9,25 @@ package FaceDetecting;
 import com.googlecode.javacpp.FloatPointer;
 import com.googlecode.javacpp.Pointer;
 import com.googlecode.javacpp.PointerPointer;
-import java.util.List;
-import java.util.ArrayList;
+import common.Person;
+import gui.CharacterPersonView;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.googlecode.javacv.cpp.opencv_core.*;
-import static com.googlecode.javacv.cpp.opencv_highgui.*;
+import static com.googlecode.javacv.cpp.opencv_highgui.CV_LOAD_IMAGE_GRAYSCALE;
+import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
+import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
+import static com.googlecode.javacv.cpp.opencv_imgproc.CV_BGR2GRAY;
+import static com.googlecode.javacv.cpp.opencv_imgproc.cvCvtColor;
+import static com.googlecode.javacv.cpp.opencv_imgproc.cvResize;
 import static com.googlecode.javacv.cpp.opencv_legacy.*;
 
-public class Recognizer {
+public class Recognizer implements FrameObserverWithCoords {
 
     /** the logger */
     private static final Logger LOGGER = Logger.getLogger();
@@ -34,6 +43,8 @@ public class Recognizer {
     int nPersons;
     /** the person names */
     final List personNames = new ArrayList<String>();
+    /** the person last names */
+    final List personLAstNames = new ArrayList<String>();
     /** the number of eigenvalues */
     int nEigens = 0;
     /** eigenvectors */
@@ -45,8 +56,12 @@ public class Recognizer {
     /** the projected training faces */
     CvMat projectedTrainFaceMat;
 
+    List<Person> persons = new ArrayList<Person>();
+
     /** Constructs a new FaceRecognition instance. */
-    public Recognizer() {
+    public Recognizer(FrameObservableWithCoords observable) {
+        observable.addListener(this);
+        this.learn("data/all10.txt");
     }
 
     /** Trains from the data in the given training text index file, and store the trained data into the file 'data/facedata.xml'.
@@ -121,11 +136,11 @@ public class Recognizer {
 
     /** Recognizes the face in each of the test images given, and compares the results with the truth.
      *
-     * @param szFileTest the index file of test images
+     * @param /szFileTest the index file of test images
      */
-    public void recognizeFileList(final String szFileTest) {
+    public void recognizeFileList(IplImage[] testFaceImgArr) {
         LOGGER.info("===========================================");
-        LOGGER.info("recognizing faces indexed from " + szFileTest);
+        //LOGGER.info("recognizing faces indexed from " + szFileTest);
         int i = 0;
         int nTestFaces = 0;         // the number of test images
         CvMat trainPersonNumMat;  // the person numbers during training
@@ -138,7 +153,7 @@ public class Recognizer {
         float confidence = 0.0f;
 
         // load test images and ground truth for person number
-        testFaceImgArr = loadFaceImgArray(szFileTest);
+        //testFaceImgArr = loadFaceImgArray(szFileTest);
         nTestFaces = testFaceImgArr.length;
 
         LOGGER.info(nTestFaces + " test faces loaded");
@@ -179,6 +194,12 @@ public class Recognizer {
             if (nearest == truth) {
                 answer = "Correct";
                 nCorrect++;
+                Person person = new Person();
+                person.setFirstname("Cześ");
+                person.setLastname("Grześ");
+                person.setMatchCoefficient(confidence);
+                person.setPicture(pAvgTrainImg);
+                CharacterPersonView.createWindow(person);
             } else {
                 answer = "WRONG!";
                 nWrong++;
@@ -236,7 +257,9 @@ public class Recognizer {
 
             // store the face images in an array
             for (iFace = 0; iFace < nFaces; iFace++) {
+                Person person = new Person();
                 String personName;
+                String personLastName;
                 String sPersonName;
                 int personNumber;
 
@@ -248,7 +271,8 @@ public class Recognizer {
                 final String[] tokens = line.split(" ");
                 personNumber = Integer.parseInt(tokens[0]);
                 personName = tokens[1];
-                imgFilename = tokens[2];
+                personLastName = tokens[2];
+                imgFilename = tokens[3];
                 sPersonName = personName;
                 LOGGER.info("Got " + iFace + " " + personNumber + " " + personName + " " + imgFilename);
 
@@ -256,6 +280,7 @@ public class Recognizer {
                 if (personNumber > nPersons) {
                     // Allocate memory for the extra person (or possibly multiple), using this new person's name.
                     personNames.add(sPersonName);
+                    personLAstNames.add(personLastName);
                     nPersons = personNumber;
                     LOGGER.info("Got new person " + sPersonName + " -> nPersons = " + nPersons + " [" + personNames.size() + "]");
                 }
@@ -760,12 +785,36 @@ public class Recognizer {
      */
     public static void main(final String[] args) {
 
-        final Recognizer faceRecognition = new Recognizer();
+        //final Recognizer faceRecognition = new Recognizer();
         //faceRecognition.learn("data/some-training-faces.txt");
-        faceRecognition.learn("data/all10.txt");
+        //faceRecognition.learn("data/all10.txt");
         //faceRecognition.recognizeFileList("data/some-test-faces.txt");
-        faceRecognition.recognizeFileList("data/lower3.txt");
+        //faceRecognition.recognizeFileList("data/lower3.txt");
     }
 
 
+    @Override
+    public void update(IplImage frame, List<Integer[]> coords) {
+        LOGGER.info("Przekazuję do obróbki");
+        IplImage[] faces = new IplImage[coords.size()];
+        IplImage tmp;
+        int j = 0;
+        for(Integer[] i: coords) {
+            cvSetImageROI(frame, cvRect(i[0], i[1], i[2], i[3]));
+            tmp = cvCreateImage(cvGetSize(frame), frame.depth(), frame.nChannels());
+            cvCopy(frame, tmp, null);
+            faces[j] = tmp;
+            tmp = cvCreateImage(new CvSize(100, 100), frame.depth(), frame.nChannels());
+            cvResize(faces[j], tmp);
+            faces[j] = tmp;
+            tmp = IplImage.create(100, 100, IPL_DEPTH_8U, 1);
+            cvCvtColor(faces[j], tmp, CV_BGR2GRAY);
+            faces[j] = tmp;
+            cvResetImageROI(frame);
+            cvSaveImage("next"+j+".png", tmp);
+            j++;
+        }
+        LOGGER.info("Obrobione, przkazuję do rozpoznania");
+        recognizeFileList(faces);
+    }
 }

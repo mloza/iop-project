@@ -1,13 +1,9 @@
 package FaceDetecting;
 
 import com.googlecode.javacpp.Loader;
-import com.googlecode.javacv.cpp.opencv_core.*;
 import com.googlecode.javacv.cpp.opencv_objdetect;
-
-import gui.Application;
 import gui.FrameObservable;
 import gui.FrameObserver;
-import gui.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +54,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	/**
 	 * xml file with info about face recognition
 	 */
-	private static final String CASCADE_FILE = Application.CURRENT_DIRECTORY + "/haarcascade_frontalface_alt.xml";
+	private static final String CASCADE_FILE = /*Application.CURRENT_DIRECTORY + */"haarcascade_frontalface_alt.xml";
 	private opencv_objdetect.CvHaarClassifierCascade classifier;
 	private IplImage grayImage;
 	private IplImage smallImage;
@@ -90,6 +86,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 		cvCvtColor(originalImage, grayImage, CV_BGR2GRAY);
 		cvResize(grayImage, smallImage, CV_INTER_AREA);
 		// Search faces on image <SCALE_FACTOR> times smaller ...
+        System.out.println(CASCADE_FILE);
 		CvSeq faces = cvHaarDetectObjects(smallImage, classifier, storage, 1.1, 3, CV_HAAR_DO_CANNY_PRUNING);
 
 		Integer[] coordinates = null;

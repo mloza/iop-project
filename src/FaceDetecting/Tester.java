@@ -1,6 +1,5 @@
 package FaceDetecting;
 
-import FaceRecognition.FaceRecognition;
 import com.googlecode.javacv.cpp.opencv_core;
 import gui.FrameObservable;
 import gui.FrameObserver;
@@ -32,7 +31,7 @@ public class Tester implements FrameObservable, FrameObserver {
     public static void main(String[] args) {
         Tester t = new Tester();
         FaceDetector f = new FaceDetector(t, t.frame.width(), t.frame.height());
-        FaceRecognition recognizer = new FaceRecognition(f);
+        Recognizer recognizer = new Recognizer(f);
 
         f.addListener(t);
         t.notifyListeners();
@@ -43,7 +42,7 @@ public class Tester implements FrameObservable, FrameObserver {
      */
     Tester() {
         System.out.println("Ładuję obrazek");
-        frame = cvLoadImage("data/learn/2.ppm", 1);
+        frame = cvLoadImage("tst1/1.jpg", 1);
         //opencv_core.IplImage tmp = cvCreateImage(new opencv_core.CvSize(100, 100), frame.depth(), frame.nChannels());
         //cvResize(frame, tmp);
         //frame = tmp;
