@@ -1,12 +1,11 @@
 package gui;
 
+import FaceDetecting.FaceDetector;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-
-import javax.swing.JOptionPane;
-
-import FaceDetecting.FaceDetector;
 
 public class Application {
 	public static String CURRENT_DIRECTORY;
@@ -19,7 +18,6 @@ public class Application {
 		try {
 			new Application();
 		} catch (Exception e) {
-			Logger.logException(e);
 			JOptionPane.showMessageDialog(null, "Unable to start application, check log file for more informations.",
 					"Error!", JOptionPane.ERROR_MESSAGE);
 			return;

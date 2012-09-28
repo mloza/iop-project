@@ -287,7 +287,7 @@ public class Recognizer implements FrameObserverWithCoords {
                     persons.add(person);
                     LOGGER.info("Got new person " + sPersonName + " -> nPersons = " + nPersons + " [" + personNames.size() + "]");
                 } else {
-                    LOGGER.info("a" +personNumber);
+                    //LOGGER.info("a" +personNumber);
                     persons.add(persons.get(personNumber-1));
                 }
 

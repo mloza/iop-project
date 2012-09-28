@@ -16,7 +16,9 @@ public class Logger {
 		if(out != null) {
 			out.println(msg);
 			out.flush();
-		}
+		} else {
+            System.out.println(msg);
+        }
 		
 	}
 	

@@ -61,7 +61,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 	private CvMemStorage storage;
 	
 	private static final int REDUCTION = 3; 
-	
+
 	void init(int imageWidth, int imageHeight) {
 		// Preload the opencv_objdetect module to work around a known bug.
         Loader.load(opencv_objdetect.class);
@@ -86,7 +86,7 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 		cvCvtColor(originalImage, grayImage, CV_BGR2GRAY);
 		cvResize(grayImage, smallImage, CV_INTER_AREA);
 		// Search faces on image <SCALE_FACTOR> times smaller ...
-        System.out.println(CASCADE_FILE);
+        // System.out.println(CASCADE_FILE);
 		CvSeq faces = cvHaarDetectObjects(smallImage, classifier, storage, 1.1, 3, CV_HAAR_DO_CANNY_PRUNING);
 
 		Integer[] coordinates = null;
@@ -113,7 +113,9 @@ public class FaceDetector implements FrameObserver, FrameObservableWithCoords,
 		imageHeight = frameHeight;
 		init(frameWidth, frameHeight);
 		observable.addListener(this);
-	}
+
+        Recognizer r = new Recognizer(this);
+    }
 
 	/**
 	 * @Override method from FrameObserver
