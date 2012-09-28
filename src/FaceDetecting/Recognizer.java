@@ -194,11 +194,9 @@ public class Recognizer implements FrameObserverWithCoords {
             if (nearest == truth) {
                 answer = "Correct";
                 nCorrect++;
-                Person person = new Person();
-                person.setFirstname("Cześ");
-                person.setLastname("Grześ");
+                Person person = persons.get(i);
+                person.setPicture(testFaceImgArr[i]);
                 person.setMatchCoefficient(confidence);
-                person.setPicture(pAvgTrainImg);
                 CharacterPersonView.createWindow(person);
             } else {
                 answer = "WRONG!";
@@ -257,7 +255,7 @@ public class Recognizer implements FrameObserverWithCoords {
 
             // store the face images in an array
             for (iFace = 0; iFace < nFaces; iFace++) {
-                Person person = new Person();
+                Person person = null;//new Person();
                 String personName;
                 String personLastName;
                 String sPersonName;
@@ -278,11 +276,19 @@ public class Recognizer implements FrameObserverWithCoords {
 
                 // Check if a new person is being loaded.
                 if (personNumber > nPersons) {
+                    person = new Person();
                     // Allocate memory for the extra person (or possibly multiple), using this new person's name.
                     personNames.add(sPersonName);
                     personLAstNames.add(personLastName);
                     nPersons = personNumber;
+                    person.setFirstname(personName);
+                    person.setLastname(personLastName);
+                    person.setPicture(cvLoadImage(imgFilename, 1));
+                    persons.add(person);
                     LOGGER.info("Got new person " + sPersonName + " -> nPersons = " + nPersons + " [" + personNames.size() + "]");
+                } else {
+                    LOGGER.info("a" +personNumber);
+                    persons.add(persons.get(personNumber-1));
                 }
 
                 // Keep the data
@@ -306,6 +312,7 @@ public class Recognizer implements FrameObserverWithCoords {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+
 
         LOGGER.info("Data loaded from '" + filename + "': (" + nFaces + " images of " + nPersons + " people).");
         final StringBuilder stringBuilder = new StringBuilder();

@@ -8,6 +8,19 @@ public class Person {
 	private String lastname;
 	private double matchCoefficient;
 	private IplImage picture;
+    //private IplImage found;
+    private Integer window;
+
+    public Integer getWindow() {
+        return window;
+    }
+
+    public void setWindow(Integer window) {
+        this.window = window;
+    }
+
+
+
 	public Person() {
 		
 	}
