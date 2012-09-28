@@ -1,12 +1,13 @@
 \section{Założenia projektu}
-Celem projektu InteligentEye jest wykonanie programu wykrywającego podejrzane zachowania na podstawie analizy obrazu z kamery wideo.
+Celem projektu Inteligenteye jest wykonanie programu wykrywającego podejrzane zachowania na podstawie analizy obrazu z kamery wideo.
 
 \subsection{Technika wykonania}
-Projekt będzie stworzony w języku JAVA. Do rozpoznawania obrazu będzie użyta biblioteka OpenCV, opakowana za pomocą JavaCV.
+Projekt będzie stworzony w języku JAVA. Do rozpoznawania obrazu będzie użyta biblioteka OpenCV, opakowana za pomocą JavaCV. 
 
 
 i cos z reszty zespolow
 
 \subsection{Analiza obrazu}
 Obraz otrzymywany z kamery komputerowej będzie analizowany pod kątem przede wszystkim rozpoznawania twarzy. Następnie zostanie przeszukana baza danych zawierająca portrety osób podejrzanych. W momencie wychwycenia podobieństwa program poinformuje użytkownika o niebezpieczeństwie. W miarę możliwości program będzie rozpoznawał również wszelkiego rodzaju podejrzane pakunki i przedmioty a także oznaki wskazujące na nerwowość i zaniepokojenie obserwowanych osób.
+
 
