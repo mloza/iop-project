@@ -8,7 +8,7 @@ public class Person {
 	private int id;
 	private String firstname;
 	private String lastname;
-	private double matchCoefficient;
+	private double matchCoefficient = -9999.99;
 	private IplImage picture;
 
 	public JFrame getFrameWindow()

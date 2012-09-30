@@ -71,8 +71,14 @@ public class CharacterPersonView extends JFrame {
 		panel.setBounds(12, 23, 100, 100);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
+		ImageIcon img;
+		if(person.getPicture() != null) {
+			img = new ImageIcon(person.getPicture().getBufferedImage());
+		}
+		else {
+			img = new ImageIcon();
+		}
 
-		ImageIcon img = new ImageIcon(person.getPicture().getBufferedImage());
 		lblNewLabel_1.setIcon(img);
 		panel.add(lblNewLabel_1);
 	}

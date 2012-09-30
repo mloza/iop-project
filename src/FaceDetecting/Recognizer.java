@@ -20,7 +20,7 @@ import java.util.List;
 
 import static com.googlecode.javacv.cpp.opencv_core.*;
 import static com.googlecode.javacv.cpp.opencv_highgui.CV_LOAD_IMAGE_GRAYSCALE;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
+import static com.googlecode.javacv.cpp.opencv_highgui.*;
 import static com.googlecode.javacv.cpp.opencv_imgproc.*;
 import static com.googlecode.javacv.cpp.opencv_legacy.*;
 
@@ -947,7 +947,7 @@ public class Recognizer implements FrameObserverWithCoords
 			cvCvtColor(faces[j], tmp, CV_BGR2GRAY);
 			faces[j] = tmp;
 			cvResetImageROI(frame);
-			//cvSaveImage("next" + j + ".png", tmp);
+			cvSaveImage("next" + j + ".png", tmp);
 			j++;
 		}
 		LOGGER.info("Obrobione, przkazuję do rozpoznania");

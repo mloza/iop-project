@@ -60,14 +60,14 @@ public class Application {
 	}
 	
 	private void createCamera() throws Exception {
-		cam = new Camera(2);
+		cam = new Camera(0);
 		Logger.log("Access to video device gained.");
 	}
 	
 	private void createFaceDetector() {
-		faceDetector = new FaceDetector(cam, cam.imageWidth, cam.imageHeight);
+		faceDetector = new FaceDetector(cam, cam.imageWidth	, cam.imageHeight);
 	}
-	
+		
 	private void createApplicationView() {
 		cameraView = new CameraView(faceDetector);
 		cameraView.createView();
