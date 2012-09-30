@@ -47,8 +47,10 @@ public class CharacterPersonView extends JFrame {
 	 */
 	public CharacterPersonView(Person person) {
        // person.setWindow(this);
-		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		System.out.println(person);
+		setTitle("Uwaga, pojawiła się podejrzana osoba!");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 179);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -61,7 +61,7 @@ public class Recognizer implements FrameObserverWithCoords {
     /** Constructs a new FaceRecognition instance. */
     public Recognizer(FrameObservableWithCoords observable) {
         observable.addListener(this);
-        this.learn("data/all10.txt");
+        this.learn("data/lower3.txt");
     }
 
     /** Trains from the data in the given training text index file, and store the trained data into the file 'data/facedata.xml'.
@@ -190,11 +190,12 @@ public class Recognizer implements FrameObserverWithCoords {
             confidence = pConfidence.get();
             truth = personNumTruthMat.data_i().get(i);
             nearest = trainPersonNumMat.data_i().get(iNearest);
-
+            
             if (nearest == truth) {
                 answer = "Correct";
                 nCorrect++;
-                Person person = persons.get(i);
+                Person person = persons.get(iNearest);
+                System.out.println(person.getLastname());
                 person.setPicture(testFaceImgArr[i]);
                 person.setMatchCoefficient(confidence);
                 CharacterPersonView.createWindow(person);
@@ -312,8 +313,7 @@ public class Recognizer implements FrameObserverWithCoords {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-
-
+        
         LOGGER.info("Data loaded from '" + filename + "': (" + nFaces + " images of " + nPersons + " people).");
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("People: ");
@@ -325,6 +325,8 @@ public class Recognizer implements FrameObserverWithCoords {
         }
         LOGGER.info(stringBuilder.toString());
 
+        
+        
         return faceImgArr;
     }
 
