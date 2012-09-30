@@ -21,10 +21,7 @@ import java.util.List;
 import static com.googlecode.javacv.cpp.opencv_core.*;
 import static com.googlecode.javacv.cpp.opencv_highgui.CV_LOAD_IMAGE_GRAYSCALE;
 import static com.googlecode.javacv.cpp.opencv_highgui.cvLoadImage;
-import static com.googlecode.javacv.cpp.opencv_highgui.cvSaveImage;
-import static com.googlecode.javacv.cpp.opencv_imgproc.CV_BGR2GRAY;
-import static com.googlecode.javacv.cpp.opencv_imgproc.cvCvtColor;
-import static com.googlecode.javacv.cpp.opencv_imgproc.cvResize;
+import static com.googlecode.javacv.cpp.opencv_imgproc.*;
 import static com.googlecode.javacv.cpp.opencv_legacy.*;
 
 public class Recognizer implements FrameObserverWithCoords
@@ -174,6 +171,17 @@ public class Recognizer implements FrameObserverWithCoords
 		//storeEigenfaceImages();
 	}
 
+
+	private int nTestFaces = 0;    // the number of test images
+	private CvMat trainPersonNumMat;  // the person numbers during training
+	private float[] projectedTestFace;
+
+	private void load() {
+		trainPersonNumMat = loadTrainingData();
+		projectedTestFace = new float[nEigens];
+
+	}
+
 	/**
 	 * Recognizes the face in each of the test images given, and compares the results with the truth.
 	 *
@@ -181,41 +189,24 @@ public class Recognizer implements FrameObserverWithCoords
 	 */
 	public void recognizeFileList(IplImage[] testFaceImgArr)
 	{
-		LOGGER.info("===========================================");
-		//LOGGER.info("recognizing faces indexed from " + szFileTest);
 		int i = 0;
-		int nTestFaces = 0;         // the number of test images
-		CvMat trainPersonNumMat;  // the person numbers during training
-		float[] projectedTestFace;
-		String answer;
 		int nCorrect = 0;
 		int nWrong = 0;
-		double timeFaceRecognizeStart;
-		double tallyFaceRecognizeTime;
 		float confidence = 0.0f;
 
-		// load test images and ground truth for person number
-		//testFaceImgArr = loadFaceImgArray(szFileTest);
 		nTestFaces = testFaceImgArr.length;
-
 		LOGGER.info(nTestFaces + " test faces loaded");
 
-		// load the saved training data
-		trainPersonNumMat = loadTrainingData();
 		if (trainPersonNumMat == null)
 		{
-			return;
+			load();
+			if (trainPersonNumMat == null) return;
 		}
-
-		// project the test images onto the PCA subspace
-		projectedTestFace = new float[nEigens];
-		timeFaceRecognizeStart = (double) cvGetTickCount();        // Record the timing.
 
 		for (i = 0; i < nTestFaces; i++)
 		{
 			int iNearest;
 			int nearest;
-			int truth;
 
 			// project the test image onto the PCA subspace
 			cvEigenDecomposite(
@@ -235,27 +226,29 @@ public class Recognizer implements FrameObserverWithCoords
 			//truth = personNumTruthMat.data_i().get(i);
 			nearest = trainPersonNumMat.data_i().get(iNearest);
 
-			if (confidence > 0)//(nearest == truth)
+			if (confidence > 0.5)//(nearest == truth)
 			{
-				answer = "Correct";
 				nCorrect++;
 				Person person = persons.get(nearest-1);
 				System.out.println(i);
-				person.setPicture(testFaceImgArr[i]);
-				person.setMatchCoefficient(confidence);
+				if(confidence > person.getMatchCoefficient()) {
+					person.setPicture(testFaceImgArr[i]);
+					person.setMatchCoefficient(confidence);
+
+					if(person.getFrameWindow() != null) {
+						person.getFrameWindow().repaint();
+					}
+				}
 				CharacterPersonView.createWindow(person);
 			} else
 			{
-				answer = "WRONG!";
 				nWrong++;
 			}
 			//LOGGER.info("nearest = " + nearest + ", Truth = " + truth + " (" + answer + "). Confidence = " + confidence);
 		}
-		tallyFaceRecognizeTime = (double) cvGetTickCount() - timeFaceRecognizeStart;
 		if (nCorrect + nWrong > 0)
 		{
 			LOGGER.info("TOTAL ACCURACY: " + (nCorrect * 100 / (nCorrect + nWrong)) + "% out of " + (nCorrect + nWrong) + " tests.");
-			LOGGER.info("TOTAL TIME: " + (tallyFaceRecognizeTime / (cvGetTickFrequency() * 1000.0 * (nCorrect + nWrong))) + " ms average.");
 		}
 	}
 
@@ -954,7 +947,7 @@ public class Recognizer implements FrameObserverWithCoords
 			cvCvtColor(faces[j], tmp, CV_BGR2GRAY);
 			faces[j] = tmp;
 			cvResetImageROI(frame);
-			cvSaveImage("next" + j + ".png", tmp);
+			//cvSaveImage("next" + j + ".png", tmp);
 			j++;
 		}
 		LOGGER.info("Obrobione, przkazuję do rozpoznania");

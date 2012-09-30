@@ -18,10 +18,10 @@ class Logger {
     }
 
     public void info(String asd) {
-        System.out.println(asd);
+        //System.out.println(asd);
     }
 
     public void error(String asd) {
-        System.out.println(asd);
+        //System.out.println(asd);
     }
 }

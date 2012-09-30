@@ -1,12 +1,11 @@
 package gui;
 
+import FaceDetecting.FaceDetector;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-
-import javax.swing.JOptionPane;
-
-import FaceDetecting.FaceDetector;
 
 public class Application {
 	public static String CURRENT_DIRECTORY;
@@ -61,7 +60,7 @@ public class Application {
 	}
 	
 	private void createCamera() throws Exception {
-		cam = new Camera(0);
+		cam = new Camera(2);
 		Logger.log("Access to video device gained.");
 	}
 	

@@ -26,6 +26,7 @@ public class CharacterPersonView extends JFrame {
                 public void run() {
                     try {
                         CharacterPersonView frame = new CharacterPersonView(person);
+	                    person.setFrameWindow(frame);
                         frame.setVisible(true);
                         frame.setResizable(false);
                         frame.addWindowListener(new WindowAdapter() {

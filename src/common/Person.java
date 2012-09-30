@@ -2,13 +2,26 @@ package common;
 
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
 
+import javax.swing.*;
+
 public class Person {
 	private int id;
 	private String firstname;
 	private String lastname;
 	private double matchCoefficient;
 	private IplImage picture;
-    //private IplImage found;
+
+	public JFrame getFrameWindow()
+	{
+		return frameWindow;
+	}
+
+	public void setFrameWindow(JFrame frameWindow)
+	{
+		this.frameWindow = frameWindow;
+	}
+
+	private JFrame frameWindow;
     private Integer window;
 
     public Integer getWindow() {
